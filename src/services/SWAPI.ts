@@ -3,7 +3,6 @@
  */
 
 import axios from "axios";
-import { SWAPI_Search, SWAPI_Search_Multi } from "../types";
 
 // Create a new axios instance
 const instance = axios.create({
@@ -27,23 +26,23 @@ const get = async <T>(endpoint: string) => {
  * Search requests
  */
 
-export const getById = async (resource: string, id: number) => {
-	return get<SWAPI_Search>(`/${resource}/${id}`)
+export const getById = async <T = any>(resource: string, id: number) => {
+	return get<T>(`/${resource}/${id}`)
 }
 
-export const getMulti = async (resource: string) => {
-	return get<SWAPI_Search_Multi>(`/${resource}`)
+export const getMulti = async <T = any>(resource: string) => {
+	return get<T>(`/${resource}`)
 }
 
-export const getPage = async (page: number) => {
-	return get<SWAPI_Search_Multi>(`/?page=${page}`)
+export const getPage = async <T = any>(resource: string, page: number) => {
+	return get<T>(`${resource}/?page=${page}`)
 }
 
-export const search = async (query: string) => {
-	return get<SWAPI_Search_Multi>(`/?search=${query}`)
+export const search = async <T = any>(query: string) => {
+	return get<T>(`/?search=${query}`)
 }
 
-export const searchPage = async (query: string, page: number) => {
-	return get<SWAPI_Search_Multi>(`/?search=${query}&page=${page}`)
+export const searchPage = async <T = any>(query: string, page: number) => {
+	return get<T>(`/?search=${query}&page=${page}`)
 }
 

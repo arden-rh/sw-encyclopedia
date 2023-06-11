@@ -3,15 +3,34 @@
  */
 
 /** General search types */
-export type SWAPI_Search = {
+type SWAPI_Search_Multi = {
     current_page: number
-    data: SWAPI_Film_Search | SWAPI_Person_Search | SWAPI_Planet_Search | SWAPI_Species_Search | SWAPI_Starship_Search | SWAPI_Vehicle_Search
+	first_page_url: string
+    from: number
+    last_page: number
+    last_page_url: string
+    links: Links[]
+    next_page_url: string | null
+    path: string
+    per_page: number
+    prev_page_url: string | null
+    to: number
+    total: number
 }
 
-export type SWAPI_Search_Multi = {
-    current_page: number
-    data: SWAPI_Films_Search[] | SWAPI_People_Search[] | SWAPI_Planets_Search[] | SWAPI_SpeciesM_Search[] | SWAPI_Starships_Search[] | SWAPI_Vehicles_Search[]
+type Links = {
+	url: string
+	label: string
+	active: string
 }
+
+/** Multi search types */
+export type SWAPI_Search_Films = SWAPI_Search_Multi & { data: SWAPI_Films[] }
+export type SWAPI_Search_People = SWAPI_Search_Multi & { data: SWAPI_People[] }
+export type SWAPI_Search_Planets = SWAPI_Search_Multi & { data: SWAPI_Planets[] }
+export type SWAPI_Search_Starships = SWAPI_Search_Multi & { data: SWAPI_Starships[] }
+export type SWAPI_Search_Species = SWAPI_Search_Multi & { data: SWAPI_SpeciesM[] }
+export type SWAPI_Search_Vechicles = SWAPI_Search_Multi & { data: SWAPI_Vehicles[] }
 
 /** General Interfaces */
 interface Created_Edited {
@@ -58,9 +77,10 @@ interface SWAPI_Film extends Created_Edited, ID_Title {
     release_date: string
 }
 
-type SWAPI_Films_Search = SWAPI_Film & Omit<SWAPI_Counts, "films_count" | "pilots_count">
+export type SWAPI_Film_Search = SWAPI_Film & Omit<SWAPI_Detailed_Lists, "films" | "pilots">
 
-type SWAPI_Film_Search = SWAPI_Film & Omit<SWAPI_Detailed_Lists, "films" | "pilots">
+export type SWAPI_Films = SWAPI_Film & Omit<SWAPI_Counts, "films_count" | "pilots_count">
+
 
 /** People search interface and types */
 interface SWAPI_Person extends Created_Edited, ID_Name {
@@ -73,9 +93,9 @@ interface SWAPI_Person extends Created_Edited, ID_Name {
     skin_color: string
 }
 
-type SWAPI_Person_Search = SWAPI_Person & Omit<SWAPI_Detailed_Lists, "characters" | "planets" | "pilots">
+export type SWAPI_Person_Search = SWAPI_Person & Omit<SWAPI_Detailed_Lists, "characters" | "planets" | "pilots">
 
-type SWAPI_People_Search = SWAPI_Person & Omit<SWAPI_Counts, "characters_count" | "planets_count" | "pilots_count">
+export type SWAPI_People = SWAPI_Person & Omit<SWAPI_Counts, "characters_count" | "planets_count" | "pilots_count">
 
 /** Planet search interface and types */
 interface SWAPI_Planet extends ID_Name, Created_Edited {
@@ -90,9 +110,9 @@ interface SWAPI_Planet extends ID_Name, Created_Edited {
     terrain: string
 }
 
-type SWAPI_Planet_Search = SWAPI_Planet & Pick<SWAPI_Detailed_Lists, "films">
+export type SWAPI_Planet_Search = SWAPI_Planet & Pick<SWAPI_Detailed_Lists, "films">
 
-type SWAPI_Planets_Search = Omit<SWAPI_Planet, "residents"> & Pick<SWAPI_Counts, "films_count"> & {residents_count : number}
+export type SWAPI_Planets = Omit<SWAPI_Planet, "residents"> & Pick<SWAPI_Counts, "films_count"> & {residents_count : number}
 
 /** Starships search interface and types */
 interface SWAPI_Starship extends Created_Edited, ID_Name {
@@ -110,14 +130,9 @@ interface SWAPI_Starship extends Created_Edited, ID_Name {
     starship_class: string
 }
 
-type SWAPI_Starship_Search = SWAPI_Starship & Pick<SWAPI_Detailed_Lists, "films" | "pilots">
+export type SWAPI_Starship_Search = SWAPI_Starship & Pick<SWAPI_Detailed_Lists, "films" | "pilots">
 
-type SWAPI_Starships_Search = SWAPI_Starship & Pick<SWAPI_Counts, "films_count" | "pilots_count">
-
-/** Vehicle search interface and types */
-type SWAPI_Vehicle_Search = Omit<SWAPI_Starship, "starship_class" | "hyperdrive_rating" | "MGLT"> & Pick<SWAPI_Detailed_Lists, "films" | "pilots"> & { vechicle_class: string}
-
-type SWAPI_Vehicles_Search = Omit<SWAPI_Starship, "starship_class" | "hyperdrive_rating" | "MGLT"> & Pick<SWAPI_Counts, "films_count" | "pilots_count"> & { vechicle_class: string}
+export type SWAPI_Starships = SWAPI_Starship & Pick<SWAPI_Counts, "films_count" | "pilots_count">
 
 /** Species search interface and types */
 interface SWAPI_Species extends ID_Name, Created_Edited {
@@ -133,6 +148,12 @@ interface SWAPI_Species extends ID_Name, Created_Edited {
     skin_colors: string
 }
 
-type SWAPI_Species_Search = SWAPI_Species & Pick<SWAPI_Detailed_Lists, "films">
+export type SWAPI_Species_Search = SWAPI_Species & Pick<SWAPI_Detailed_Lists, "films">
 
-type SWAPI_SpeciesM_Search = Omit<SWAPI_Species, "people"> & Pick<SWAPI_Counts, "films_count"> & {people_count: number}
+export type SWAPI_SpeciesM = Omit<SWAPI_Species, "people"> & Pick<SWAPI_Counts, "films_count"> & {people_count: number}
+
+/** Vehicle search interface and types */
+export type SWAPI_Vehicle_Search = Omit<SWAPI_Starship, "starship_class" | "hyperdrive_rating" | "MGLT"> & Pick<SWAPI_Detailed_Lists, "films" | "pilots"> & { vechicle_class: string}
+
+export type SWAPI_Vehicles = Omit<SWAPI_Starship, "starship_class" | "hyperdrive_rating" | "MGLT"> & Pick<SWAPI_Counts, "films_count" | "pilots_count"> & { vechicle_class: string}
+
