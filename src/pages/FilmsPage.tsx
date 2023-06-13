@@ -4,6 +4,7 @@ import { useSearchParams } from 'react-router-dom'
 import { SWAPI_Films, SWAPI_Search_Films } from '../types'
 import { getMulti } from '../services/SWAPI'
 import Pagination from '../components/Pagination'
+import CardComponent from '../components/CardComponent'
 
 
 const FilmsPage = () => {
@@ -46,15 +47,25 @@ const FilmsPage = () => {
 
 	return (
 		<>
-			<h1>FilmsPage</h1>
+			<h1>Films Page</h1>
 
-			{data && data.map(item => <p>{item.title}</p>)}
+			<div className='d-flex flex-column align-items-center gap-4'>
+				{data &&
+					data.map(item =>
+						<CardComponent
+							director={item.director}
+							episode_id={item.episode_id}
+							text={item.opening_crawl}
+							title={item.title}
+						/>)
+				}
+			</div>
 			{searchResult && <Pagination
 				page={page}
 				totalPages={searchResult.last_page}
-				// onNextPage={}
-				// onPrevPage={}
-			 />}
+			// onNextPage={}
+			// onPrevPage={}
+			/>}
 		</>
 	)
 }

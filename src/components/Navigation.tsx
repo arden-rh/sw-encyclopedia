@@ -13,13 +13,16 @@ const Navigation = () => {
 	const handleClose = () => setMenuOpen(false)
 
 	const toggleMenu = () => {
-		setMenuOpen(!menuOpen)
+
+		if (window.innerWidth < 768) {
+			setMenuOpen(!menuOpen)
+		}
 	}
 
 	return (
 		<Navbar bg="dark" variant="dark" expand='md' className="mb-3">
 			<Container fluid>
-				<Navbar.Brand href="#">The Star Wars Wiki</Navbar.Brand>
+				<Navbar.Brand href="#">The Star Wars Encyclopedia</Navbar.Brand>
 				<Navbar.Toggle aria-controls={`offcanvasNavbar-expand-md`} onClick={toggleMenu} />
 				<Navbar.Offcanvas
 					aria-labelledby={`offcanvasNavbarLabel-expand-md`}
@@ -29,7 +32,7 @@ const Navigation = () => {
 				>
 					<Offcanvas.Header closeButton>
 						<Offcanvas.Title>
-							The Star Wars Wiki - Resources
+							The Star Wars Encyclopedia
 						</Offcanvas.Title>
 					</Offcanvas.Header>
 					<Offcanvas.Body>
