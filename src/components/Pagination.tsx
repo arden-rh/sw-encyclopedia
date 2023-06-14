@@ -7,7 +7,7 @@ interface IProps {
 	onPrevPage: () => void
 }
 
-const Pagination: React.FC<IProps> = ({ page, totalPages, onNextPage, onPrevPage }) => {
+const Pagination: React.FC<IProps> = ({ page, totalPages, onNextPage, onPrevPage, nextPageLink }) => {
 	return (
 		<div className="d-flex justify-content-between align-items-center">
 			<div className="prev">

@@ -38,8 +38,8 @@ const Navigation = () => {
 					<Offcanvas.Body>
 						<Nav className="justify-content-end flex-grow-1 pe-3">
 							<Nav.Link as={NavLink} to="/" onClick={toggleMenu}>Home</Nav.Link>
-							<Nav.Link as={NavLink} to="/films" onClick={toggleMenu}>Films</Nav.Link>
-							<Nav.Link as={NavLink} to="/people" onClick={toggleMenu}>People</Nav.Link>
+							<Nav.Link as={NavLink} to="/films/?page=1" onClick={toggleMenu}>Films</Nav.Link>
+							<Nav.Link as={NavLink} to="/people/?page=1" onClick={toggleMenu}>People</Nav.Link>
 							<Nav.Link as={NavLink} to="/planets" onClick={toggleMenu}>Planets</Nav.Link>
 							<Nav.Link as={NavLink} to="/species" onClick={toggleMenu}>Species</Nav.Link>
 							<Nav.Link as={NavLink} to="/starships" onClick={toggleMenu}>Starships</Nav.Link>

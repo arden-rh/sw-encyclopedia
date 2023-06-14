@@ -15,6 +15,3 @@
   #  publish = "dist" # Folder with the static content for _redirect file
 
   ## more info on configuring this file: https://docs.netlify.com/configure-builds/file-based-configuration/
-
-Add heading textAdd bold text, <Cmd+b>Add italic text, <Cmd+i>
-Add a quote, <Cmd+Shift+.>Add code, <Cmd+e>Add a link, <Cmd+k>

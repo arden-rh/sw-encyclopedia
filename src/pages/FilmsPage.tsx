@@ -5,6 +5,7 @@ import { SWAPI_Films, SWAPI_Search_Films } from '../types'
 import { getMulti } from '../services/SWAPI'
 import Pagination from '../components/Pagination'
 import CardComponent from '../components/CardComponent'
+import SearchForm from '../components/SearchForm'
 
 
 const FilmsPage = () => {
@@ -36,7 +37,21 @@ const FilmsPage = () => {
 
 	}
 
-	const goToPage = (url: string) => {
+	const getFilmsSearch = async (data: SWAPI_Films[]) => {
+
+		setError(null)
+		setLoading(true)
+		setData(null)
+
+
+		try {
+			await setData(data)
+
+		} catch (e: any) {
+			setError(e.message)
+		}
+
+		setLoading(false)
 
 	}
 
@@ -49,21 +64,25 @@ const FilmsPage = () => {
 		<>
 			<h1>Films Page</h1>
 
+			<SearchForm
+				page={page}
+				resource='films'
+				onGetFilmsSearch={getFilmsSearch}
+
+			/>
+
 			<div className='d-flex flex-column align-items-center gap-4'>
 				{data &&
 					data.map(item =>
 						<CardComponent
-							director={item.director}
-							episode_id={item.episode_id}
-							text={item.opening_crawl}
-							title={item.title}
+							films={item}
 						/>)
 				}
 			</div>
 			{searchResult && <Pagination
 				page={page}
 				totalPages={searchResult.last_page}
-			// onNextPage={}
+				// onNextPage={() => {}}
 			// onPrevPage={}
 			/>}
 		</>
