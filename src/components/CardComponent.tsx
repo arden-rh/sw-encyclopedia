@@ -1,14 +1,17 @@
+import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
-import { SWAPI_Films, SWAPI_People, SWAPI_Planets } from '../types';
+import { Link, NavLink } from 'react-router-dom'
+import { SWAPI_Films, SWAPI_People, SWAPI_Planets, SWAPI_SpeciesM, SWAPI_Starships, SWAPI_Vehicles } from '../types';
 
 interface IProps {
-	films?: SWAPI_Films
-	people?: SWAPI_People
-	planets?: SWAPI_Planets
+	data: SWAPI_Films | SWAPI_People | SWAPI_Planets | SWAPI_SpeciesM | SWAPI_Starships | SWAPI_Vehicles
+	onGoToIndvPage: (id: number) => void
 }
 
-const CardComponent: React.FC<IProps> = ({ films, people, planets }) => {
+
+
+const CardComponent: React.FC<IProps> = ({ data, onGoToIndvPage }) => {
 
 	const convertToRoman = (num: number) => {
 		if (num === 1) { return "I" }
@@ -20,34 +23,44 @@ const CardComponent: React.FC<IProps> = ({ films, people, planets }) => {
 	}
 
 	return (
-		<Card
-			bg='dark'
-			style={{ width: '20rem' }}
-			text='white'
-		>
-			<Card.Body>
-				{films && <>
-					<Card.Title>Episode: {convertToRoman(Number(films.episode_id))}: {films.title}</Card.Title>
-					<Card.Text>
-						{films.opening_crawl}
-					</Card.Text>
-				</>
-				}
-				{people && <Card.Title>{people.name}</Card.Title>}
-				{planets && <Card.Title>{planets.name}</Card.Title>}
+		<>
+			{data ?
+				<Card
+					bg='dark'
+					style={{ width: '20rem' }}
+					text='white'
+				>
+					<Card.Body>
+						{('episode_id' in data) && <>
+							<Card.Title>Episode: {convertToRoman(Number(data.episode_id))}: {data.title}</Card.Title>
+							<Card.Text>
+								{data.opening_crawl}
+							</Card.Text>
+						</>
+						}
+						{('name' in data) && <Card.Title>{data.name}</Card.Title>}
 
-			</Card.Body>
-			<ListGroup className="list-group-flush">
-				<ListGroup.Item variant='dark'>Director: {films?.director}</ListGroup.Item>
-				<ListGroup.Item>Released: </ListGroup.Item>
-				<ListGroup.Item>Vestibulum at eros</ListGroup.Item>
-			</ListGroup>
-			<Card.Body>
-				<Card.Link href="#">Card Link</Card.Link>
-				<Card.Link href="#">Another Link</Card.Link>
 
-			</Card.Body>
-		</Card>
+					</Card.Body>
+					{('director' in data) && <>
+						<ListGroup className="list-group-flush">
+							<ListGroup.Item variant='dark'>Director: {data.director}</ListGroup.Item>
+							<ListGroup.Item>Released: </ListGroup.Item>
+							<ListGroup.Item>Vestibulum at eros</ListGroup.Item>
+						</ListGroup>
+						<Card.Body>
+							<Card.Link href="#">Another Link</Card.Link>
+							<Card.Link
+								as={Link}
+								to={`/films/${data.id}`}
+								onClick={() => onGoToIndvPage(data.id)}
+							>
+								<Button variant='secondary' onClick={() => onGoToIndvPage(data.id)}>Read more</Button>
+							</Card.Link>
+						</Card.Body>
+					</>}
+				</Card> : <p>Something went wrong</p>}
+		</>
 	)
 }
 

@@ -118,7 +118,7 @@ const PlanetsPage = () => {
 				{!error && data &&
 					data.map(item =>
 						<CardComponent
-							planets={item}
+							data={item}
 							key={item.id}
 						/>)
 				}

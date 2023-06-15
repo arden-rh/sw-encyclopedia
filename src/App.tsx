@@ -13,6 +13,9 @@ import SpeciesPage from './pages/SpeciesPage'
 import StarshipsPage from './pages/StarshipsPage'
 import VehiclesPage from './pages/VehiclesPage'
 
+/** Individual pages */
+import FilmPage from './pages/FilmPage'
+
 const App = () => {
 	return (
 		<div id='App'>
@@ -22,7 +25,7 @@ const App = () => {
 					<Route path="/" element={<HomePage />} />
 					<Route path="/films">
 						<Route path="" element={<FilmsPage />} />
-						<Route path=":id" element={<FilmsPage />} />
+						<Route path=":id" element={<FilmPage />} />
 					</Route>
 					<Route path="/people">
 						<Route path="" element={<PeoplePage />} />

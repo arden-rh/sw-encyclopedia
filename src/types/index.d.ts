@@ -30,7 +30,7 @@ export type SWAPI_Search_People = SWAPI_Search_Multi & { data: SWAPI_People[] }
 export type SWAPI_Search_Planets = SWAPI_Search_Multi & { data: SWAPI_Planets[] }
 export type SWAPI_Search_Starships = SWAPI_Search_Multi & { data: SWAPI_Starships[] }
 export type SWAPI_Search_Species = SWAPI_Search_Multi & { data: SWAPI_SpeciesM[] }
-export type SWAPI_Search_Vechicles = SWAPI_Search_Multi & { data: SWAPI_Vehicles[] }
+export type SWAPI_Search_Vehicles = SWAPI_Search_Multi & { data: SWAPI_Vehicles[] }
 
 /** General Interfaces */
 interface Created_Edited {

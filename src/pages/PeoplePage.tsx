@@ -118,7 +118,7 @@ const PeoplePage = () => {
 				{!error && data &&
 					data.map(item =>
 						<CardComponent
-							people={item}
+							data={item}
 							key={item.id}
 						/>)
 				}

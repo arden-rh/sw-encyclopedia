@@ -2,7 +2,6 @@ import { useState } from 'react';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import { NavLink, Link } from 'react-router-dom';
 
@@ -40,10 +39,10 @@ const Navigation = () => {
 							<Nav.Link as={NavLink} to="/" onClick={toggleMenu}>Home</Nav.Link>
 							<Nav.Link as={NavLink} to="/films/?page=1" onClick={toggleMenu}>Films</Nav.Link>
 							<Nav.Link as={NavLink} to="/people/?page=1" onClick={toggleMenu}>People</Nav.Link>
-							<Nav.Link as={NavLink} to="/planets" onClick={toggleMenu}>Planets</Nav.Link>
-							<Nav.Link as={NavLink} to="/species" onClick={toggleMenu}>Species</Nav.Link>
-							<Nav.Link as={NavLink} to="/starships" onClick={toggleMenu}>Starships</Nav.Link>
-							<Nav.Link as={NavLink} to="/vechicles" onClick={toggleMenu}>Vechicles</Nav.Link>
+							<Nav.Link as={NavLink} to="/planets/?page=1" onClick={toggleMenu}>Planets</Nav.Link>
+							<Nav.Link as={NavLink} to="/species/?page=1" onClick={toggleMenu}>Species</Nav.Link>
+							<Nav.Link as={NavLink} to="/starships/?page=1" onClick={toggleMenu}>Starships</Nav.Link>
+							<Nav.Link as={NavLink} to="/vehicles/?page=1" onClick={toggleMenu}>Vehicles</Nav.Link>
 						</Nav>
 					</Offcanvas.Body>
 				</Navbar.Offcanvas>
