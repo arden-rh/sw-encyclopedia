@@ -38,11 +38,7 @@ export const getPage = async <T = any>(resource: string, page: number) => {
 	return get<T>(`${resource}/?page=${page}`)
 }
 
-export const search = async <T = any>(resource: string, query: string) => {
-	return get<T>(`${resource}/?search=${query}`)
-}
-
-export const searchPage = async <T = any>(query: string, searchPage: number) => {
-	return get<T>(`/?search=${query}&page=${searchPage}`)
+export const searchResource = async <T = any>(resource: string, query: string, page: number) => {
+	return get<T>(`${resource}/?search=${query}&page=${page}`)
 }
 

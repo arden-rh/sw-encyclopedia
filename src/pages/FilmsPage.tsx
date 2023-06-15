@@ -6,6 +6,8 @@ import { getMulti } from '../services/SWAPI'
 import Pagination from '../components/Pagination'
 import CardComponent from '../components/CardComponent'
 import SearchForm from '../components/SearchForm'
+import { searchResource } from "../services/SWAPI"
+
 
 
 const FilmsPage = () => {
@@ -17,16 +19,20 @@ const FilmsPage = () => {
 	const [searchParams, setSearchParams] = useSearchParams()
 	const [searchResult, setSearchResult] = useState<SWAPI_Search_Films | null>(null)
 
+
+	const query = searchParams.get("query")
+	const paramsPage = searchParams.get("page")
+
 	const getFilms = async () => {
 
 		setError(null)
 		setLoading(true)
 		setData(null)
+		setSearchResult(null)
 
 		try {
 			const result = await getMulti<SWAPI_Search_Films>("films")
 			setData(result.data)
-			setSearchResult(result)
 			setPage(result.current_page)
 
 		} catch (e: any) {
@@ -37,15 +43,24 @@ const FilmsPage = () => {
 
 	}
 
-	const getFilmsSearch = async (data: SWAPI_Films[]) => {
+	const formSubmit = async (query: string, page: number) => {
 
+		setData(null)
 		setError(null)
 		setLoading(true)
-		setData(null)
+		setSearchResult(null)
 
+		setSearchParams({ query: query, page: page.toString() })
 
 		try {
-			await setData(data)
+			const result = await searchResource<SWAPI_Search_Films>("films", query, page)
+			setData(result.data)
+			setSearchResult(result)
+
+			if (result.data.length === 0) {
+				setLoading(false)
+				throw new Error(`No result could be found for ${query}`)
+			}
 
 		} catch (e: any) {
 			setError(e.message)
@@ -56,23 +71,32 @@ const FilmsPage = () => {
 	}
 
 	useEffect(() => {
-		getFilms()
 
-	}, [])
+		if (!query) {
+			getFilms()
+			return
+		}
+
+		formSubmit(query, page)
+
+	}, [query, page])
 
 	return (
 		<>
 			<h1>Films Page</h1>
 
 			<SearchForm
+				onFormSubmit={formSubmit}
 				page={page}
-				resource='films'
-				onGetFilmsSearch={getFilmsSearch}
-
 			/>
 
+			{loading && <p>Loading...</p>}
+			{error && <p>{error}</p>}
+			{!error && searchResult && <p>Showing {searchResult.total} search {searchResult.data.length === 1 ? 'result' : 'results'} for "{query}"...</p>}
+
+
 			<div className='d-flex flex-column align-items-center gap-4'>
-				{data &&
+				{!error && data &&
 					data.map(item =>
 						<CardComponent
 							films={item}
@@ -82,7 +106,7 @@ const FilmsPage = () => {
 			{searchResult && <Pagination
 				page={page}
 				totalPages={searchResult.last_page}
-				// onNextPage={() => {}}
+			// onNextPage={() => {}}
 			// onPrevPage={}
 			/>}
 		</>

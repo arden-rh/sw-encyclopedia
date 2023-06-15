@@ -9,7 +9,6 @@ interface IProps {
 
 const CardComponent: React.FC<IProps> = ({ people, films }) => {
 
-
 	const convertToRoman = (num: number) => {
 		if (num === 1) { return "I" }
 		if (num === 2) { return "II" }
@@ -24,6 +23,7 @@ const CardComponent: React.FC<IProps> = ({ people, films }) => {
 			bg='dark'
 			style={{ width: '20rem' }}
 			text='white'
+			key={films?.id}
 		>
 			<Card.Body>
 				{films && <>

@@ -22,7 +22,7 @@ const Navigation = () => {
 	return (
 		<Navbar bg="dark" variant="dark" expand='md' className="mb-3">
 			<Container fluid>
-				<Navbar.Brand href="#">The Star Wars Encyclopedia</Navbar.Brand>
+				<Navbar.Brand as={Link} to="/">The Star Wars Encyclopedia</Navbar.Brand>
 				<Navbar.Toggle aria-controls={`offcanvasNavbar-expand-md`} onClick={toggleMenu} />
 				<Navbar.Offcanvas
 					aria-labelledby={`offcanvasNavbarLabel-expand-md`}
