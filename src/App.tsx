@@ -15,6 +15,9 @@ import VehiclesPage from './pages/VehiclesPage'
 
 /** Individual pages */
 import FilmPage from './pages/FilmPage'
+import PersonPage from './pages/PersonPage'
+import StarshipPage from './pages/StarshipPage'
+
 
 const App = () => {
 	return (
@@ -29,7 +32,7 @@ const App = () => {
 					</Route>
 					<Route path="/people">
 						<Route path="" element={<PeoplePage />} />
-						<Route path=":id" element={<PeoplePage />} />
+						<Route path=":id" element={<PersonPage />} />
 					</Route>
 					<Route path="/planets">
 						<Route path="" element={<PlanetsPage />} />
@@ -41,7 +44,7 @@ const App = () => {
 					</Route>
 					<Route path="/starships">
 						<Route path="" element={<StarshipsPage />} />
-						<Route path=":id" element={<StarshipsPage />} />
+						<Route path=":id" element={<StarshipPage />} />
 					</Route>
 					<Route path="vehicles">
 						<Route path="" element={<VehiclesPage />} />

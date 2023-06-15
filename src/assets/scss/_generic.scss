@@ -5,10 +5,14 @@ body,
 }
 
 body {
-    background-color: #5c5c5c;
-    background-position: center;
+	background: url("/src/images/casey-horner-RmoWqDCqN2E-unsplash.jpg") no-repeat center;
+    background-color: $color-black;
 	background-size: cover;
 	color: #ffffff;
+}
+
+h1, h2, h3 {
+	font-family: $primary-font;
 }
 
 #app {
@@ -22,6 +26,7 @@ body {
 .container {
 	display: flex;
 	flex-direction: column;
+	align-items: center;
 }
 
 .card-container {

@@ -65,7 +65,7 @@ interface SWAPI_Detailed_Lists {
     planets: SWAPI_Planet[]
     species: SWAPI_Species[]
     starships: ID_Name[]
-    vechicles: ID_Name[]
+    vehicles: ID_Name[]
 }
 
 /** Film search interface and types */

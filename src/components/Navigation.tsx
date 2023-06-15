@@ -19,7 +19,7 @@ const Navigation = () => {
 	}
 
 	return (
-		<Navbar bg="dark" variant="dark" expand='md' className="mb-3">
+		<Navbar bg="dark" variant="dark" expand='md' className="mb-3" sticky='top'>
 			<Container fluid>
 				<Navbar.Brand as={Link} to="/">The Star Wars Encyclopedia</Navbar.Brand>
 				<Navbar.Toggle aria-controls={`offcanvasNavbar-expand-md`} onClick={toggleMenu} />

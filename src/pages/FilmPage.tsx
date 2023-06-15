@@ -12,7 +12,7 @@ const FilmPage = () => {
 
 	const { id } = useParams();
 
-	const getData = async (id : number) => {
+	const getData = async (id: number) => {
 
 		setData(null)
 		setError(null)
@@ -43,9 +43,20 @@ const FilmPage = () => {
 		<>
 			{loading && <p>Loading...</p>}
 			{error && <p>{error}</p>}
+			{!error && data &&
+				<IdPage data={data}>
+					<section>
+						<div className='body'>
+							<ul>
+								<li>Director: {data.director}</li>
+								<li>Release date: {data.release_date}</li>
+							</ul>
 
-			{!error && data && <IdPage data={data} />}
-
+							<h2>Opening Crawl</h2>
+							<p>{data.opening_crawl}</p>
+						</div>
+					</section>
+				</IdPage>}
 		</>
 	)
 }

@@ -1,8 +1,179 @@
 .info-container {
-	max-width: 90%;
-	display: flex;
-	border: 2px solid white;
-	border-radius: 10px;
 	align-items: center;
-	justify-content: center;
+	color: $color-black;
+	display: flex;
+	flex-direction: column;
+	max-width: 90%;
+	width: 90%;
+
+	h1 {
+		background-color: $color-lightblue;
+		border-radius: 10px;
+		box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.60);
+		display: flex;
+		flex-direction: column;
+		font-size: 3rem;
+		line-height: 3.2rem;
+		padding: 1.4rem 2rem 1rem;
+		width: 100%;
+
+		span {
+			margin: 0.02em 0;
+		}
+
+		.name {
+			text-align: center;
+		}
+	}
+
+	section {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		width: 100%;
+
+		&:last-child {
+			margin-bottom: 4.5rem;
+		}
+
+		div {
+			background-color: $color-lightblue;
+			border-radius: 10px;
+			box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.60);
+			display: flex;
+			flex-direction: column;
+			font-family: $secondary-font;
+			font-size: 1rem;
+			margin: 0.5rem 0;
+			padding: 1rem 2rem;
+			width: 100%;
+
+			h2 {
+				align-items: baseline;
+				font-size: 1.8rem;
+				line-height: 2rem;
+				margin-top: 0.5rem;
+
+				a {
+					color: inherit;
+					display: flex;
+					justify-content: space-between;
+					text-decoration: none;
+
+					&:hover {
+						color: $color-turqoise;
+					}
+				}
+
+				svg {
+					height: 1.6rem;
+					line-height: 2rem;
+				}
+			}
+
+			ul {
+				margin: 0 0 0.5rem;
+				padding: 0;
+				width: 100%;
+
+				li {
+					border-bottom: 1px solid $color-black;
+					line-height: 2rem;
+					list-style: none;
+					margin: 0.5rem 0;
+					width: 100%;
+
+					a {
+						text-decoration: none;
+						color: inherit;
+
+						&:hover {
+							color: $color-turqoise;
+						}
+					}
+				}
+			}
+
+			.links {
+				a {
+					display: flex;
+					justify-content: space-between;
+
+					.material-symbols-outlined {
+						font-size: 1.6rem;
+					}
+				}
+			}
+		}
+	}
+}
+
+.go-back {
+	position: fixed;
+	bottom: 25px;
+	right: 25px;
+	height: fit-content;
+	width: fit-content;
+
+	button {
+		background-color: $color-turqoise;
+		border-radius: 50%;
+		border: none;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		height: 60px;
+		width: 60px;
+		box-shadow: 3px 3px 3px 0px rgba(0, 0, 0, 0.60);
+
+		svg {
+			height: 60%;
+		}
+
+		&:hover {
+			background-color: $color-lightblue;
+
+			svg {
+				color: $color-black;
+			}
+		}
+	}
+}
+
+@media only screen and (min-width: 768px) {
+
+	.info-container {
+
+		h1 {
+			flex-direction: row;
+			max-width: fit-content;
+
+			span {
+				&:first-child {
+					margin: 0 0.5rem 0 0;
+				}
+			}
+		}
+
+		section {
+			align-items: stretch;
+			flex-direction: row;
+			flex-wrap: wrap;
+			gap: 2%;
+			justify-content: center;
+
+			div {
+				max-width: 49%;
+
+				&:last-child:nth-child(odd) {
+					max-width: 100%;
+				}
+			}
+
+			.body {
+				max-width: 100%;
+			}
+		}
+	}
+
 }
