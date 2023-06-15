@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
-import { Link, useNavigate, useSearchParams } from 'react-router-dom'
-import { getById, getNewPageData, searchResource } from "../services/SWAPI"
-import { SWAPI_Film, SWAPI_Films, SWAPI_Search_Films } from '../types'
+import { useNavigate, useSearchParams } from 'react-router-dom'
+import { getNewPageData, searchResource } from "../services/SWAPI"
+import { SWAPI_Films, SWAPI_Search_Films } from '../types'
 // import useGetData from '../hooks/useGetData'
 
 /** Components */
@@ -33,6 +33,13 @@ const FilmsPage = () => {
 		const nextPageValue = next ? page + 1 : page - 1
 
 		if (!searchResult || searchResult.next_page_url === null) {
+			setLoading(false)
+
+			if (query) {
+				getData(query, nextPageValue)
+			} else {
+				getData("", nextPageValue)
+			}
 			return
 		}
 
@@ -83,24 +90,10 @@ const FilmsPage = () => {
 
 	}
 
-	const goToIndvPage = async (id: number) => {
-
-		try {
-			const result = await getById<SWAPI_Film>("films", id)
-		} catch (e: any) {
-			setError(e.message)
-		}
-
-		navigate(`/films/${id}`)
-
-	}
-
-
 	const resetForm = () => {
 		setSearchParams({ query: "", page: page.toString() })
 		getData("", 1)
 	}
-
 
 	useEffect(() => {
 
@@ -126,17 +119,17 @@ const FilmsPage = () => {
 			{error && <p>{error}</p>}
 			{!error && query && searchResult && <p>Showing {searchResult.total} search {searchResult.data.length === 1 ? 'result' : 'results'} for "{query}"...</p>}
 
-			<div className='d-flex flex-column align-items-center gap-4'>
+			<div className='card-container'>
 				{!error && data &&
 					data.map(item =>
 						<CardComponent
 							data={item}
 							key={item.id}
-							onGoToIndvPage={goToIndvPage}
+							navigateToPage={() => navigate(`/films/${item.id}`)}
 						/>)
 				}
 			</div>
-			{searchResult && <Pagination
+			{searchResult && searchResult.last_page > 1 && <Pagination
 				page={page}
 				totalPages={searchResult.last_page}
 				onChangePage={changePage}

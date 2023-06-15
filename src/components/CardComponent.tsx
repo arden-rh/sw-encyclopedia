@@ -1,17 +1,15 @@
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
-import { Link, NavLink } from 'react-router-dom'
-import { SWAPI_Films, SWAPI_People, SWAPI_Planets, SWAPI_SpeciesM, SWAPI_Starships, SWAPI_Vehicles } from '../types';
+import { Link } from 'react-router-dom'
+import { SWAPI_Films, SWAPI_People, SWAPI_Planets, SWAPI_SpeciesM, SWAPI_Starships, SWAPI_Vehicles } from '../types'
 
 interface IProps {
 	data: SWAPI_Films | SWAPI_People | SWAPI_Planets | SWAPI_SpeciesM | SWAPI_Starships | SWAPI_Vehicles
-	onGoToIndvPage: (id: number) => void
+	navigateToPage: () => void
 }
 
-
-
-const CardComponent: React.FC<IProps> = ({ data, onGoToIndvPage }) => {
+const CardComponent: React.FC<IProps> = ({ data, navigateToPage }) => {
 
 	const convertToRoman = (num: number) => {
 		if (num === 1) { return "I" }
@@ -53,9 +51,9 @@ const CardComponent: React.FC<IProps> = ({ data, onGoToIndvPage }) => {
 							<Card.Link
 								as={Link}
 								to={`/films/${data.id}`}
-								onClick={() => onGoToIndvPage(data.id)}
+								onClick={navigateToPage}
 							>
-								<Button variant='secondary' onClick={() => onGoToIndvPage(data.id)}>Read more</Button>
+								<Button variant='secondary'>Read more</Button>
 							</Card.Link>
 						</Card.Body>
 					</>}

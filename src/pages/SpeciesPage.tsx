@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useSearchParams } from 'react-router-dom'
+import { useNavigate, useSearchParams } from 'react-router-dom'
 import { getNewPageData, searchResource } from "../services/SWAPI"
 import { SWAPI_SpeciesM, SWAPI_Search_Species } from '../types'
 // import useGetData from '../hooks/useGetData'
@@ -19,21 +19,32 @@ const SpeciesPage = () => {
 	const [searchParams, setSearchParams] = useSearchParams()
 	const [searchResult, setSearchResult] = useState<SWAPI_Search_Species | null>(null)
 
+	const navigate = useNavigate()
 
 	const query = searchParams.get("query")
 	const paramsPage = searchParams.get("page")
 
-	const changePage = async (next : boolean) => {
+	const changePage = async (next: boolean) => {
 
 		setError(null)
 		setLoading(true)
 		setData(null)
 
+
 		const nextPageValue = next ? page + 1 : page - 1
 
+
 		if (!searchResult || searchResult.next_page_url === null) {
+			setLoading(false)
+
+			if (query) {
+				getData(query, nextPageValue)
+			} else {
+				getData("", nextPageValue)
+			}
 			return
 		}
+
 
 		try {
 			const result = await getNewPageData<SWAPI_Search_Species>(searchResult.next_page_url)
@@ -52,6 +63,7 @@ const SpeciesPage = () => {
 		}
 
 		setLoading(false)
+
 	}
 
 	const getData = async (query: string, page: number) => {
@@ -62,6 +74,7 @@ const SpeciesPage = () => {
 		setSearchResult(null)
 
 		setSearchParams({ query: query, page: page.toString() })
+
 
 		try {
 			const result = await searchResource<SWAPI_Search_Species>("species", query, page)
@@ -82,12 +95,10 @@ const SpeciesPage = () => {
 
 	}
 
-
 	const resetForm = () => {
 		setSearchParams({ query: "", page: page.toString() })
 		getData("", 1)
 	}
-
 
 	useEffect(() => {
 
@@ -120,10 +131,11 @@ const SpeciesPage = () => {
 						<CardComponent
 							data={item}
 							key={item.id}
+							navigateToPage={() => navigate(`/films/${item.id}`)}
 						/>)
 				}
 			</div>
-			{searchResult && <Pagination
+			{searchResult && searchResult.last_page > 1 && <Pagination
 				page={page}
 				totalPages={searchResult.last_page}
 				onChangePage={changePage}

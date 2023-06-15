@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useSearchParams } from 'react-router-dom'
+import { useNavigate, useSearchParams } from 'react-router-dom'
 import { getNewPageData, searchResource } from "../services/SWAPI"
 import { SWAPI_Starships, SWAPI_Search_Starships } from '../types'
 // import useGetData from '../hooks/useGetData'
@@ -19,11 +19,12 @@ const StarshipsPage = () => {
 	const [searchParams, setSearchParams] = useSearchParams()
 	const [searchResult, setSearchResult] = useState<SWAPI_Search_Starships | null>(null)
 
+	const navigate = useNavigate()
 
 	const query = searchParams.get("query")
 	const paramsPage = searchParams.get("page")
 
-	const changePage = async (next : boolean) => {
+	const changePage = async (next: boolean) => {
 
 		setError(null)
 		setLoading(true)
@@ -32,6 +33,13 @@ const StarshipsPage = () => {
 		const nextPageValue = next ? page + 1 : page - 1
 
 		if (!searchResult || searchResult.next_page_url === null) {
+			setLoading(false)
+
+			if (query) {
+				getData(query, nextPageValue)
+			} else {
+				getData("", nextPageValue)
+			}
 			return
 		}
 
@@ -120,6 +128,7 @@ const StarshipsPage = () => {
 						<CardComponent
 							data={item}
 							key={item.id}
+							navigateToPage={() => navigate(`/films/${item.id}`)}
 						/>)
 				}
 			</div>
