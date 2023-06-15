@@ -42,7 +42,19 @@ const IdPage: React.FC<IProps> = ({ data, children }) => {
 										</li>)}
 								</ul>
 							</div>}
-							{('pilots' in data) && data.pilots.length > 0  &&
+						{('residents' in data) && data.residents.length > 0 &&
+							<div>
+								<h2><Link to={`/people`}>Residents <FontAwesomeIcon icon={faPersonRays} /></Link></h2>
+								<ul className='links'>
+									{data.residents.map(person =>
+										<li>
+											<Link to={`/people/${person.id}`}><span>{person.name}</span>
+												<span className="material-symbols-outlined">arrow_forward_ios</span>
+											</Link>
+										</li>)}
+								</ul>
+							</div>}
+						{('pilots' in data) && data.pilots.length > 0 &&
 							<div>
 								<h2><Link to={`/people`}>Pilots <FontAwesomeIcon icon={faPersonRays} /></Link></h2>
 								<ul className='links'>
@@ -84,7 +96,7 @@ const IdPage: React.FC<IProps> = ({ data, children }) => {
 								<ul className='links'>
 									{data.vehicles.map(vehicle =>
 										<li>
-											<Link to={`/starships/${vehicle.id}`}><span>{vehicle.name}</span>
+											<Link to={`/vehicles/${vehicle.id}`}><span>{vehicle.name}</span>
 												<span className="material-symbols-outlined">arrow_forward_ios</span>
 											</Link>
 										</li>)}
@@ -108,7 +120,7 @@ const IdPage: React.FC<IProps> = ({ data, children }) => {
 								<ul className='links'>
 									{data.planets.map(planet =>
 										<li>
-											<Link to={`/planets${planet.id}`}><span>{planet.name}</span>
+											<Link to={`/planets/${planet.id}`}><span>{planet.name}</span>
 												<span className="material-symbols-outlined">arrow_forward_ios</span>
 											</Link>
 										</li>)}

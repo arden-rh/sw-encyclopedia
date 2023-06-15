@@ -153,7 +153,7 @@ export type SWAPI_Species_Search = SWAPI_Species & Pick<SWAPI_Detailed_Lists, "f
 export type SWAPI_SpeciesM = Omit<SWAPI_Species, "people"> & Pick<SWAPI_Counts, "films_count"> & {people_count: number}
 
 /** Vehicle search interface and types */
-export type SWAPI_Vehicle_Search = Omit<SWAPI_Starship, "starship_class" | "hyperdrive_rating" | "MGLT"> & Pick<SWAPI_Detailed_Lists, "films" | "pilots"> & { vechicle_class: string}
+export type SWAPI_Vehicle_Search = Omit<SWAPI_Starship, "starship_class" | "hyperdrive_rating" | "MGLT"> & Pick<SWAPI_Detailed_Lists, "films" | "pilots"> & { vehicle_class: string}
 
-export type SWAPI_Vehicles = Omit<SWAPI_Starship, "starship_class" | "hyperdrive_rating" | "MGLT"> & Pick<SWAPI_Counts, "films_count" | "pilots_count"> & { vechicle_class: string}
+export type SWAPI_Vehicles = Omit<SWAPI_Starship, "starship_class" | "hyperdrive_rating" | "MGLT"> & Pick<SWAPI_Counts, "films_count" | "pilots_count"> & { vehicle_class: string}
 

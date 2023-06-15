@@ -1,14 +1,14 @@
 import { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { getById } from "../services/SWAPI"
-import { SWAPI_Starship_Search } from '../types'
+import { SWAPI_Planet_Search } from '../types'
 import IdPage from '../components/IdPage'
 
-const StarshipPage = () => {
+const PlanetPage = () => {
 
 	const [error, setError] = useState<string | null>(null)
 	const [loading, setLoading] = useState(false)
-	const [data, setData] = useState<SWAPI_Starship_Search | null>(null)
+	const [data, setData] = useState<SWAPI_Planet_Search | null>(null)
 
 	const { id } = useParams();
 
@@ -19,7 +19,7 @@ const StarshipPage = () => {
 		setLoading(true)
 
 		try {
-			const result = await getById<SWAPI_Starship_Search>("starships", id)
+			const result = await getById<SWAPI_Planet_Search>("planets", id)
 			setData(result)
 		} catch (e: any) {
 			setError(e.message)
@@ -48,12 +48,12 @@ const StarshipPage = () => {
 					<section>
 						<div className='body'>
 							<ul>
-								<li>Model: <span className='text-capitalize'>{data.model}</span></li>
-								<li>Starship class: <span className='text-capitalize'>{data.starship_class}</span></li>
-								<li>Manufacturer: {data.manufacturer}</li>
-								<li>Crew: {data.crew}</li>
-								<li>Passengers: {data.passengers}</li>
-								<li>Hyperdrive rating: {data.hyperdrive_rating}</li>
+								<li>Climate: <span className='text-capitalize'>{data.climate}</span></li>
+								<li>Diameter: {data.diameter} km</li>
+								<li>Orbital period: {data.orbital_period} standard days</li>
+								<li>Rotation period: {data.rotation_period} standard hours</li>
+								<li>Population: <span className='text-capitalize'>{data.population}</span></li>
+								<li>Terrain: <span className='text-capitalize'>{data.terrain}</span></li>
 							</ul>
 						</div>
 					</section>
@@ -62,4 +62,4 @@ const StarshipPage = () => {
 	)
 }
 
-export default StarshipPage
+export default PlanetPage
