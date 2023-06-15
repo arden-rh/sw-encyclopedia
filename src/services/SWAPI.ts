@@ -43,6 +43,7 @@ export const searchResource = <T = any>(resource: string, query: string, page: n
 }
 
 export const getNewPageData = async <T = any>(html: string) => {
-	return axios.get<T>(`${html}`)
+	const response =  await axios.get<T>(`${html}`)
+	return response.data as T
 }
 

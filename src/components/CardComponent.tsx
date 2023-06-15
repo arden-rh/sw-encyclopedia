@@ -1,13 +1,14 @@
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
-import { SWAPI_Film, SWAPI_Films, SWAPI_People } from '../types';
+import { SWAPI_Films, SWAPI_People, SWAPI_Planets } from '../types';
 
 interface IProps {
-	people?: SWAPI_People
 	films?: SWAPI_Films
+	people?: SWAPI_People
+	planets?: SWAPI_Planets
 }
 
-const CardComponent: React.FC<IProps> = ({ people, films }) => {
+const CardComponent: React.FC<IProps> = ({ films, people, planets }) => {
 
 	const convertToRoman = (num: number) => {
 		if (num === 1) { return "I" }
@@ -23,7 +24,6 @@ const CardComponent: React.FC<IProps> = ({ people, films }) => {
 			bg='dark'
 			style={{ width: '20rem' }}
 			text='white'
-			key={films?.id}
 		>
 			<Card.Body>
 				{films && <>
@@ -34,6 +34,8 @@ const CardComponent: React.FC<IProps> = ({ people, films }) => {
 				</>
 				}
 				{people && <Card.Title>{people.name}</Card.Title>}
+				{planets && <Card.Title>{planets.name}</Card.Title>}
+
 			</Card.Body>
 			<ListGroup className="list-group-flush">
 				<ListGroup.Item variant='dark'>Director: {films?.director}</ListGroup.Item>

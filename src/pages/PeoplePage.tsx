@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
-// import useGetData from '../hooks/useGetData'
+import { getNewPageData, searchResource } from "../services/SWAPI"
 import { SWAPI_People, SWAPI_Search_People } from '../types'
-import { getNewPageData, getMulti } from '../services/SWAPI'
-import Pagination from '../components/Pagination'
+// import useGetData from '../hooks/useGetData'
+
+/** Components */
 import CardComponent from '../components/CardComponent'
+import Pagination from '../components/Pagination'
 import SearchForm from '../components/SearchForm'
-import { searchResource } from "../services/SWAPI"
 
 
 const PeoplePage = () => {
@@ -22,13 +23,13 @@ const PeoplePage = () => {
 	const query = searchParams.get("query")
 	const paramsPage = searchParams.get("page")
 
-	const nextPage = async () => {
+	const changePage = async (next : boolean) => {
 
 		setError(null)
 		setLoading(true)
 		setData(null)
 
-		const nextPageValue = page + 1
+		const nextPageValue = next ? page + 1 : page - 1
 
 		if (!searchResult || searchResult.next_page_url === null) {
 			return
@@ -36,42 +37,14 @@ const PeoplePage = () => {
 
 		try {
 			const result = await getNewPageData<SWAPI_Search_People>(searchResult.next_page_url)
-			setData(result.data.data)
-			setSearchResult(result.data)
-			setPage(result.data.current_page)
-
-			if (query) {
-				getData(query, result.data.current_page)
-			} else {
-				setSearchParams({ page: nextPageValue.toString() })
-				// getData("", nextPageValue)
-
-			}
-
-		} catch (e: any) {
-			setError(e.message)
-		}
-
-		setLoading(false)
-	}
-
-	const getPeople = async () => {
-
-		setError(null)
-		setLoading(true)
-		setData(null)
-		setSearchResult(null)
-
-		try {
-			// const result = await getMulti<SWAPI_Search_People>("people")
-			const result = await searchResource<SWAPI_Search_People>("people", "", page)
 			setData(result.data)
 			setSearchResult(result)
-			setPage(page)
+			setPage(result.current_page)
 
-			if (result.data.length === 0) {
-				setLoading(false);
-				throw new Error(`No results could be found.`);
+			if (query) {
+				getData(query, result.current_page)
+			} else {
+				setSearchParams({ page: nextPageValue.toString() })
 			}
 
 		} catch (e: any) {
@@ -79,7 +52,6 @@ const PeoplePage = () => {
 		}
 
 		setLoading(false)
-
 	}
 
 	const getData = async (query: string, page: number) => {
@@ -90,7 +62,6 @@ const PeoplePage = () => {
 		setSearchResult(null)
 
 		setSearchParams({ query: query, page: page.toString() })
-		console.log(page)
 
 		try {
 			const result = await searchResource<SWAPI_Search_People>("people", query, page)
@@ -109,35 +80,6 @@ const PeoplePage = () => {
 
 		setLoading(false)
 
-	}
-
-	const prevPage = async () => {
-
-		setError(null)
-		setLoading(true)
-		setData(null)
-
-		if (!searchResult || searchResult.prev_page_url === null) {
-			return
-		}
-
-		try {
-			const result = await getNewPageData<SWAPI_Search_People>(searchResult.prev_page_url)
-			setData(result.data.data)
-			setSearchResult(result.data)
-			setPage(result.data.current_page)
-
-			if (!query) {
-				return
-			}
-
-			getData(query, result.data.current_page)
-
-		} catch (e: any) {
-			setError(e.message)
-		}
-
-		setLoading(false)
 	}
 
 
@@ -164,7 +106,7 @@ const PeoplePage = () => {
 			<SearchForm
 				onGetData={getData}
 				onResetForm={resetForm}
-				page={page}
+				page={1}
 			/>
 
 			{loading && <p>Loading...</p>}
@@ -177,14 +119,14 @@ const PeoplePage = () => {
 					data.map(item =>
 						<CardComponent
 							people={item}
+							key={item.id}
 						/>)
 				}
 			</div>
 			{searchResult && <Pagination
 				page={page}
 				totalPages={searchResult.last_page}
-				onNextPage={nextPage}
-				onPrevPage={prevPage}
+				onChangePage={changePage}
 			/>}
 		</>
 	)

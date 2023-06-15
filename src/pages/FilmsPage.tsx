@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
-// import useGetData from '../hooks/useGetData'
+import { getNewPageData, searchResource } from "../services/SWAPI"
 import { SWAPI_Films, SWAPI_Search_Films } from '../types'
-import { getMulti } from '../services/SWAPI'
-import Pagination from '../components/Pagination'
-import CardComponent from '../components/CardComponent'
-import SearchForm from '../components/SearchForm'
-import { searchResource } from "../services/SWAPI"
+// import useGetData from '../hooks/useGetData'
 
+/** Components */
+import CardComponent from '../components/CardComponent'
+import Pagination from '../components/Pagination'
+import SearchForm from '../components/SearchForm'
 
 
 const FilmsPage = () => {
@@ -23,28 +23,38 @@ const FilmsPage = () => {
 	const query = searchParams.get("query")
 	const paramsPage = searchParams.get("page")
 
-	const getFilms = async () => {
+	const changePage = async (next : boolean) => {
 
 		setError(null)
 		setLoading(true)
 		setData(null)
-		setSearchResult(null)
+
+		const nextPageValue = next ? page + 1 : page - 1
+
+		if (!searchResult || searchResult.next_page_url === null) {
+			return
+		}
 
 		try {
-			const result = await getMulti<SWAPI_Search_Films>("films")
+			const result = await getNewPageData<SWAPI_Search_Films>(searchResult.next_page_url)
 			setData(result.data)
 			setSearchResult(result)
 			setPage(result.current_page)
+
+			if (query) {
+				getData(query, result.current_page)
+			} else {
+				setSearchParams({ page: nextPageValue.toString() })
+			}
 
 		} catch (e: any) {
 			setError(e.message)
 		}
 
 		setLoading(false)
-
 	}
 
-	const formSubmit = async (query: string, page: number) => {
+	const getData = async (query: string, page: number) => {
 
 		setData(null)
 		setError(null)
@@ -57,6 +67,7 @@ const FilmsPage = () => {
 			const result = await searchResource<SWAPI_Search_Films>("films", query, page)
 			setData(result.data)
 			setSearchResult(result)
+			setPage(page)
 
 			if (result.data.length === 0) {
 				setLoading(false)
@@ -71,24 +82,31 @@ const FilmsPage = () => {
 
 	}
 
+
+	const resetForm = () => {
+		setSearchParams({ query: "", page: page.toString() })
+		getData("", 1)
+	}
+
+
 	useEffect(() => {
 
-		if (!query) {
-			getFilms()
-			return
+		if (!query || query === "") {
+			getData("", Number(paramsPage || "1"))
+		} else {
+			getData(query, Number(paramsPage || "1"))
 		}
 
-		formSubmit(query, page)
-
-	}, [query, page])
+	}, [query, paramsPage])
 
 	return (
 		<>
 			<h1>Films Page</h1>
 
 			<SearchForm
-				onFormSubmit={formSubmit}
-				page={page}
+				onGetData={getData}
+				onResetForm={resetForm}
+				page={1}
 			/>
 
 			{loading && <p>Loading...</p>}
@@ -101,14 +119,14 @@ const FilmsPage = () => {
 					data.map(item =>
 						<CardComponent
 							films={item}
+							key={item.id}
 						/>)
 				}
 			</div>
 			{searchResult && <Pagination
 				page={page}
 				totalPages={searchResult.last_page}
-			// onNextPage={() => {}}
-			// onPrevPage={}
+				onChangePage={changePage}
 			/>}
 		</>
 	)
