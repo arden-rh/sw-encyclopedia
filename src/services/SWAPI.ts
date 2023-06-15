@@ -26,19 +26,23 @@ const get = async <T>(endpoint: string) => {
  * Search requests
  */
 
-export const getById = async <T = any>(resource: string, id: number) => {
+export const getById = <T = any>(resource: string, id: number) => {
 	return get<T>(`/${resource}/${id}`)
 }
 
-export const getMulti = async <T = any>(resource: string) => {
+export const getMulti = <T = any>(resource: string) => {
 	return get<T>(`/${resource}`)
 }
 
-export const getPage = async <T = any>(resource: string, page: number) => {
+export const getPage = <T = any>(resource: string, page: number) => {
 	return get<T>(`${resource}/?page=${page}`)
 }
 
-export const searchResource = async <T = any>(resource: string, query: string, page: number) => {
+export const searchResource = <T = any>(resource: string, query: string, page: number) => {
 	return get<T>(`${resource}/?search=${query}&page=${page}`)
+}
+
+export const getNewPageData = async <T = any>(html: string) => {
+	return axios.get<T>(`${html}`)
 }
 

@@ -7,7 +7,7 @@ interface IProps {
 	onPrevPage: () => void
 }
 
-const Pagination: React.FC<IProps> = ({ page, totalPages, onNextPage, onPrevPage, nextPageLink }) => {
+const Pagination: React.FC<IProps> = ({ page, totalPages, onNextPage, onPrevPage }) => {
 	return (
 		<div className="d-flex justify-content-between align-items-center">
 			<div className="prev">
@@ -22,7 +22,7 @@ const Pagination: React.FC<IProps> = ({ page, totalPages, onNextPage, onPrevPage
 			</div>
 			<div className="next">
 				<Button
-					disabled={page + 1 >= totalPages}
+					disabled={page >= totalPages}
 					onClick={onNextPage}
 					variant="warning"
 				>Next Page</Button>

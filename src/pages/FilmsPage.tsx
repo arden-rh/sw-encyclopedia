@@ -33,6 +33,7 @@ const FilmsPage = () => {
 		try {
 			const result = await getMulti<SWAPI_Search_Films>("films")
 			setData(result.data)
+			setSearchResult(result)
 			setPage(result.current_page)
 
 		} catch (e: any) {
@@ -92,7 +93,7 @@ const FilmsPage = () => {
 
 			{loading && <p>Loading...</p>}
 			{error && <p>{error}</p>}
-			{!error && searchResult && <p>Showing {searchResult.total} search {searchResult.data.length === 1 ? 'result' : 'results'} for "{query}"...</p>}
+			{!error && query && searchResult && <p>Showing {searchResult.total} search {searchResult.data.length === 1 ? 'result' : 'results'} for "{query}"...</p>}
 
 
 			<div className='d-flex flex-column align-items-center gap-4'>
