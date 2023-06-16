@@ -2,8 +2,10 @@
 
 	align-items: center;
 	display: flex;
-	justify-content: space-between;
+	justify-content: space-around;
 	margin-top: 2rem;
+	width: 40%;
+	max-width: 300px;
 
 	.btn-primary {
 		box-shadow: 3px 3px 3px 0px rgba(0, 0, 0, 0.60);

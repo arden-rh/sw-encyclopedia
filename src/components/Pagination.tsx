@@ -1,4 +1,7 @@
 import Button from "react-bootstrap/Button"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons'
+
 
 interface IProps {
 	page: number
@@ -13,7 +16,7 @@ const Pagination: React.FC<IProps> = ({ onChangePage, page, totalPages }) => {
 				<Button
 					disabled={page <= 1}
 					onClick={() => onChangePage(false)}
-				>Previous Page</Button>
+				><FontAwesomeIcon icon={faArrowLeft} /></Button>
 			</div>
 			<div className="page">
 				{page} / {totalPages}
@@ -22,7 +25,7 @@ const Pagination: React.FC<IProps> = ({ onChangePage, page, totalPages }) => {
 				<Button
 					disabled={page >= totalPages}
 					onClick={() => onChangePage(true)}
-				>Next Page</Button>
+				><FontAwesomeIcon icon={faArrowRight} /></Button>
 			</div>
 		</div>
 	)
