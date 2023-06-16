@@ -30,14 +30,6 @@ export const getById = <T = any>(resource: string, id: number) => {
 	return get<T>(`/${resource}/${id}`)
 }
 
-export const getMulti = <T = any>(resource: string) => {
-	return get<T>(`/${resource}`)
-}
-
-export const getPage = <T = any>(resource: string, page: number) => {
-	return get<T>(`${resource}/?page=${page}`)
-}
-
 export const searchResource = <T = any>(resource: string, query: string, page: number) => {
 	return get<T>(`${resource}/?search=${query}&page=${page}`)
 }
