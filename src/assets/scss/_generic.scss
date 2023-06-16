@@ -6,12 +6,14 @@ body,
 
 body {
 	background: url("/src/assets/images/casey-horner-RmoWqDCqN2E-unsplash.jpg") no-repeat center;
-    background-color: $color-black;
+	background-color: $color-black;
 	background-size: cover;
 	color: #ffffff;
 }
 
-h1, h2, h3 {
+h1,
+h2,
+h3 {
 	font-family: $primary-font;
 }
 

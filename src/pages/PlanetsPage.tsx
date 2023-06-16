@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 import { getNewPageData, searchResource } from "../services/SWAPI"
 import { SWAPI_Planets, SWAPI_Search_Planets } from '../types'
-// import useGetData from '../hooks/useGetData'
 import ListGroup from 'react-bootstrap/ListGroup'
 
 
@@ -26,7 +25,7 @@ const PlanetsPage = () => {
 	const query = searchParams.get("query")
 	const paramsPage = searchParams.get("page")
 
-	const changePage = async (next : boolean) => {
+	const changePage = async (next: boolean) => {
 
 		setError(null)
 		setLoading(true)

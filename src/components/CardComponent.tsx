@@ -31,8 +31,8 @@ const CardComponent: React.FC<IProps> = ({ children, data, navigateToPage, resou
 						</>
 						}
 						{('name' in data) && <>
-						<Card.Title>{data.name}</Card.Title>
-						{children}
+							<Card.Title>{data.name}</Card.Title>
+							{children}
 							<ListGroup className="list-group-flush">
 								<ListGroup.Item>Films: {data.films_count}</ListGroup.Item>
 								{('starships_count' in data) && data.starships_count > 0 && <ListGroup.Item>Starships: {data.starships_count}</ListGroup.Item>}

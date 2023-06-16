@@ -4,8 +4,6 @@ import { getNewPageData, searchResource } from "../services/SWAPI"
 import { SWAPI_Films, SWAPI_Search_Films } from '../types'
 import ListGroup from 'react-bootstrap/ListGroup'
 
-// import useGetData from '../hooks/useGetData'
-
 /** Components */
 import CardComponent from '../components/CardComponent'
 import Pagination from '../components/Pagination'

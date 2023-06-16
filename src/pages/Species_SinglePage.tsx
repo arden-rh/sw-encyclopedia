@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { getById } from "../services/SWAPI"
-import { SWAPI_Search_Single_Species} from '../types'
+import { SWAPI_Search_Single_Species } from '../types'
 import IdPage from '../components/IdPage'
 
 const Species_SinglePage = () => {
@@ -10,9 +10,9 @@ const Species_SinglePage = () => {
 	const [loading, setLoading] = useState(false)
 	const [data, setData] = useState<SWAPI_Search_Single_Species | null>(null)
 
-	const { id } = useParams();
+	const { id } = useParams()
 
-	const getData = async (id : number) => {
+	const getData = async (id: number) => {
 
 		setData(null)
 		setError(null)
@@ -48,7 +48,7 @@ const Species_SinglePage = () => {
 					<section>
 						<div className='body'>
 							<ul>
-								{data.homeworld !== null &&<li>Homeworld:  <Link to={`/planets/${data.homeworld.id}`}>{data.homeworld.name}</Link></li>}
+								{data.homeworld !== null && <li>Homeworld:  <Link to={`/planets/${data.homeworld.id}`}>{data.homeworld.name}</Link></li>}
 								<li>Classification: <span className='text-capitalize'>{data.classification}</span></li>
 								<li>Designation: <span className='text-capitalize'>{data.designation}</span></li>
 								<li>Language: {data.language}</li>

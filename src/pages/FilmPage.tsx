@@ -8,9 +8,9 @@ const FilmPage = () => {
 
 	const [error, setError] = useState<string | null>(null)
 	const [loading, setLoading] = useState(false)
-	const [data, setData] = useState<SWAPI_Search_Film  | null>(null)
+	const [data, setData] = useState<SWAPI_Search_Film | null>(null)
 
-	const { id } = useParams();
+	const { id } = useParams()
 
 	const getData = async (id: number) => {
 
@@ -19,7 +19,7 @@ const FilmPage = () => {
 		setLoading(true)
 
 		try {
-			const result = await getById<SWAPI_Search_Film >("films", id)
+			const result = await getById<SWAPI_Search_Film>("films", id)
 			setData(result)
 		} catch (e: any) {
 			setError(e.message)

@@ -10,9 +10,9 @@ const PersonPage = () => {
 	const [loading, setLoading] = useState(false)
 	const [data, setData] = useState<SWAPI_Search_Person | null>(null)
 
-	const { id } = useParams();
+	const { id } = useParams()
 
-	const getData = async (id : number) => {
+	const getData = async (id: number) => {
 
 		setData(null)
 		setError(null)

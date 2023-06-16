@@ -10,7 +10,7 @@ const VehiclePage = () => {
 	const [loading, setLoading] = useState(false)
 	const [data, setData] = useState<SWAPI_Search_Vehicle | null>(null)
 
-	const { id } = useParams();
+	const { id } = useParams()
 
 	const getData = async (id: number) => {
 

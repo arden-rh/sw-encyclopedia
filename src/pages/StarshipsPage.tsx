@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 import { getNewPageData, searchResource } from "../services/SWAPI"
 import { SWAPI_Starships, SWAPI_Search_Starships } from '../types'
-// import useGetData from '../hooks/useGetData'
 import ListGroup from 'react-bootstrap/ListGroup'
 
 /** Components */
