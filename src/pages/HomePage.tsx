@@ -8,7 +8,7 @@ const HomePage = () => {
 		<>
 			<div className='home-page-hero'>
 				<p>Welcome to</p>
-				<h1><img src={logo} alt="The Star Wars Encyclopedia" /><span className="d-none">The Star Wars Encyclopedia</span></h1>
+				<h1><img className='img-fluid' src={logo} alt="The Star Wars Encyclopedia" /><span className="d-none">The Star Wars Encyclopedia</span></h1>
 			</div>
 			<div className='home-page-list'>
 				<ul>
