@@ -1,14 +1,14 @@
 import { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { getById } from "../services/SWAPI"
-import { SWAPI_Person_Search } from '../types'
+import { SWAPI_Search_Person } from '../types'
 import IdPage from '../components/IdPage'
 
 const PersonPage = () => {
 
 	const [error, setError] = useState<string | null>(null)
 	const [loading, setLoading] = useState(false)
-	const [data, setData] = useState<SWAPI_Person_Search | null>(null)
+	const [data, setData] = useState<SWAPI_Search_Person | null>(null)
 
 	const { id } = useParams();
 
@@ -19,7 +19,7 @@ const PersonPage = () => {
 		setLoading(true)
 
 		try {
-			const result = await getById<SWAPI_Person_Search>("people", id)
+			const result = await getById<SWAPI_Search_Person>("people", id)
 			setData(result)
 		} catch (e: any) {
 			setError(e.message)
@@ -44,7 +44,7 @@ const PersonPage = () => {
 			{loading && <p>Loading...</p>}
 			{error && <p>{error}</p>}
 			{!error && data &&
-				<IdPage data={data}>
+				<IdPage data={data} resource='people'>
 					<section>
 						<div className='body'>
 							<ul>

@@ -130,6 +130,7 @@ const PlanetsPage = () => {
 							data={item}
 							key={item.id}
 							navigateToPage={() => navigate(`/films/${item.id}`)}
+							resource='planets'
 						>
 							<ListGroup className="list-group-flush">
 								<ListGroup.Item>Population: {item.population}</ListGroup.Item>

@@ -1,14 +1,14 @@
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { getById } from "../services/SWAPI"
-import { SWAPI_Vehicle_Search } from '../types'
+import { SWAPI_Search_Vehicle } from '../types'
 import IdPage from '../components/IdPage'
 
 const VehiclePage = () => {
 
 	const [error, setError] = useState<string | null>(null)
 	const [loading, setLoading] = useState(false)
-	const [data, setData] = useState<SWAPI_Vehicle_Search | null>(null)
+	const [data, setData] = useState<SWAPI_Search_Vehicle | null>(null)
 
 	const { id } = useParams();
 
@@ -19,7 +19,7 @@ const VehiclePage = () => {
 		setLoading(true)
 
 		try {
-			const result = await getById<SWAPI_Vehicle_Search>("vehicles", id)
+			const result = await getById<SWAPI_Search_Vehicle>("vehicles", id)
 			setData(result)
 		} catch (e: any) {
 			setError(e.message)
@@ -44,7 +44,7 @@ const VehiclePage = () => {
 			{loading && <p>Loading...</p>}
 			{error && <p>{error}</p>}
 			{!error && data &&
-				<IdPage data={data}>
+				<IdPage data={data} resource='vehicles'>
 					<section>
 						<div className='body'>
 							<ul>

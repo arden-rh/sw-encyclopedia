@@ -2,14 +2,15 @@ import Button from 'react-bootstrap/Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAnglesLeft, faEarthEurope, faFilm, faPerson, faPersonRays, faRocket, faTruckPlane } from '@fortawesome/free-solid-svg-icons'
 import { Link, useNavigate } from 'react-router-dom'
-import { SWAPI_Film_Search, SWAPI_Person_Search, SWAPI_Planet_Search, SWAPI_Species_Single_Search, SWAPI_Starship_Search, SWAPI_Vehicle_Search } from '../types'
+import { SWAPI_Search_Film, SWAPI_Search_Person, SWAPI_Search_Planet, SWAPI_Search_Single_Species, SWAPI_Search_Starship, SWAPI_Search_Vehicle } from '../types'
 
 interface IProps {
-	data: SWAPI_Film_Search | SWAPI_Person_Search | SWAPI_Planet_Search | SWAPI_Species_Single_Search | SWAPI_Starship_Search | SWAPI_Vehicle_Search
+	data: SWAPI_Search_Film | SWAPI_Search_Person | SWAPI_Search_Planet | SWAPI_Search_Single_Species | SWAPI_Search_Starship | SWAPI_Search_Vehicle
 	children: React.ReactNode
+	resource: string
 }
 
-const IdPage: React.FC<IProps> = ({ data, children }) => {
+const IdPage: React.FC<IProps> = ({ data, children, resource }) => {
 
 	const convertToRoman = (num: number) => {
 		if (num === 1) { return "I" }
@@ -141,10 +142,10 @@ const IdPage: React.FC<IProps> = ({ data, children }) => {
 					</section>
 					<Link
 						className='go-back'
-						to={'..'}
+						to={`/${resource}`}
 						onClick={(e) => {
 							e.preventDefault();
-							navigate(-1);
+							navigate(`/${resource}`);
 						}}>
 						<Button><FontAwesomeIcon icon={faAnglesLeft} /></Button>
 					</Link>

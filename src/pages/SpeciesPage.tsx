@@ -132,6 +132,7 @@ const SpeciesPage = () => {
 							data={item}
 							key={item.id}
 							navigateToPage={() => navigate(`/films/${item.id}`)}
+							resource='species'
 						>
 							<ListGroup className="list-group-flush">
 								<ListGroup.Item>Language: <span className='text-capitalize'>{item.language}</span></ListGroup.Item>

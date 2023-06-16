@@ -137,6 +137,7 @@ const FilmsPage = () => {
 							data={item}
 							key={item.id}
 							navigateToPage={() => navigate(`/films/${item.id}`)}
+							resource='films'
 						>
 							<ListGroup className="list-group-flush">
 								<ListGroup.Item>Episode: {convertToRoman(Number(item.episode_id))}</ListGroup.Item>

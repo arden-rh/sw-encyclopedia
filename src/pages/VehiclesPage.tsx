@@ -129,6 +129,7 @@ const VehiclesPage = () => {
 							data={item}
 							key={item.id}
 							navigateToPage={() => navigate(`/films/${item.id}`)}
+							resource='vehicles'
 						>
 							<ListGroup className="list-group-flush">
 								<ListGroup.Item>Model: {item.model}</ListGroup.Item>

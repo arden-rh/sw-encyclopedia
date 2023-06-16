@@ -129,6 +129,7 @@ const StarshipsPage = () => {
 							data={item}
 							key={item.id}
 							navigateToPage={() => navigate(`/films/${item.id}`)}
+							resource='starships'
 						>
 							<ListGroup className="list-group-flush">
 								<ListGroup.Item>Model: {item.model}</ListGroup.Item>

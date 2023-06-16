@@ -131,6 +131,7 @@ const PeoplePage = () => {
 							data={item}
 							key={item.id}
 							navigateToPage={() => navigate(`/films/${item.id}`)}
+							resource='people'
 						>
 							<ListGroup className="list-group-flush">
 								<ListGroup.Item>Birth year: {item.birth_year}</ListGroup.Item>

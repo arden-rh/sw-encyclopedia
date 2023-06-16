@@ -8,9 +8,10 @@ interface IProps {
 	children: React.ReactNode
 	data: SWAPI_Films | SWAPI_People | SWAPI_Planets | SWAPI_Species | SWAPI_Starships | SWAPI_Vehicles
 	navigateToPage: () => void
+	resource: string
 }
 
-const CardComponent: React.FC<IProps> = ({ children, data, navigateToPage }) => {
+const CardComponent: React.FC<IProps> = ({ children, data, navigateToPage, resource }) => {
 
 	return (
 		<>
@@ -45,7 +46,7 @@ const CardComponent: React.FC<IProps> = ({ children, data, navigateToPage }) => 
 					<Card.Body>
 						<Card.Link
 							as={Link}
-							to={`/films/${data.id}`}
+							to={`/${resource}/${data.id}`}
 							onClick={navigateToPage}
 						>
 							<Button>Read more</Button>
