@@ -1,10 +1,9 @@
 form {
 	font-family: $secondary-font;
-	width: 90%;
 	max-width: 400px;
+	width: 90%;
 
 	div {
-
 		align-items: center;
 		display: flex;
 		flex-direction: column;
@@ -14,9 +13,14 @@ form {
 			justify-content: center;
 		}
 
-		.btn:disabled {
-
-			background-color: $color-turqoise;
+		.btn {
+			&:disabled {
+				background-color: $color-turqoise;
+			}
+			&:hover {
+				background-color: $color-lightblue;
+				color: $color-black;
+			}
 		}
 
 		.btn-primary {
@@ -52,10 +56,16 @@ p {
 	width: fit-content;
 }
 
+.card-container {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 2rem;
+	justify-content: center;
+}
+
 @media only screen and (min-width: 768px) {
 
 	h1 {
 		font-size: 5rem;
 	}
-
 }

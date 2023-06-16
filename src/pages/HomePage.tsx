@@ -1,4 +1,4 @@
-import logo from "../images/swapi_logo.svg"
+import logo from "../assets/images/swapi_logo.svg"
 
 const HomePage = () => {
 	return (

@@ -2,7 +2,6 @@
 	border: none;
 	border-radius: 10px;
 	box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.60);
-
 }
 
 .card .card-body {
@@ -14,10 +13,11 @@
 	flex-direction: column;
 
 	&:last-child {
+		align-items: flex-end;
 		border-radius: 0 0 10px 10px;
 		flex-direction: row;
+		height: 20%;
 		justify-content: center;
-
 	}
 
 	.list-group {
@@ -36,7 +36,10 @@
 			border: none;
 			width: 80%;
 
+			&:hover {
+				background-color: #075558;
+				color: $color-lightblue;
+			}
 		}
 	}
-
 }
