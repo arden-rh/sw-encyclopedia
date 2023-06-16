@@ -52,7 +52,7 @@ const Species_SinglePage = () => {
 								<li><span className='info-category'>Classification:</span> <span className='text-capitalize'>{data.classification}</span></li>
 								<li><span className='info-category'>Designation:</span> <span className='text-capitalize'>{data.designation}</span></li>
 								<li><span className='info-category'>Language:</span> {data.language}</li>
-								<li><span className='info-category'>Average lifespan:</span> <span className='text-capitalize'>{data.average_lifespan}</span> years</li>
+								<li><span className='info-category'>Average lifespan:</span> <span className='text-capitalize'>{data.average_lifespan}</span> {data.average_lifespan === "unknown" ? "" : "years"}</li>
 								<li><span className='info-category'>Skin colors:</span> <span className='text-capitalize'>{data.skin_colors}</span></li>
 							</ul>
 						</div>
