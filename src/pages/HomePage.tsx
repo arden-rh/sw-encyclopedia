@@ -7,8 +7,9 @@ const HomePage = () => {
 	return (
 		<>
 			<div className='home-page-hero'>
-				<p>Welcome to</p>
+				<span>Welcome to</span>
 				<h1><img className='img-fluid' src={logo} alt="The Star Wars Encyclopedia" /><span className="d-none">The Star Wars Encyclopedia</span></h1>
+				<h2>Explore Our Categories</h2>
 			</div>
 			<div className='home-page-list'>
 				<ul>
