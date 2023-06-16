@@ -136,11 +136,10 @@ const FilmsPage = () => {
 							navigateToPage={() => navigate(`/films/${item.id}`)}
 							resource='films'
 						>
-							<ListGroup className="list-group-flush">
-								<ListGroup.Item>Episode: {convertToRoman(Number(item.episode_id))}</ListGroup.Item>
-								<ListGroup.Item>Director: {item.director}</ListGroup.Item>
-								<ListGroup.Item>Released: {item.release_date}</ListGroup.Item>
-							</ListGroup>
+							<ListGroup.Item>Episode: {convertToRoman(Number(item.episode_id))}</ListGroup.Item>
+							<ListGroup.Item>Director: {item.director}</ListGroup.Item>
+							<ListGroup.Item>Released: {item.release_date}</ListGroup.Item>
+
 						</CardComponent>
 					)
 				}

@@ -149,11 +149,10 @@ const PeoplePage = () => {
 							navigateToPage={() => navigate(`/films/${item.id}`)}
 							resource='people'
 						>
-							<ListGroup className="list-group-flush">
-								<ListGroup.Item>Birth year: {item.birth_year}</ListGroup.Item>
-								<ListGroup.Item>Homeworld: {item.homeworld.name}</ListGroup.Item>
-								<ListGroup.Item>Hair color: <span className='text-capitalize'>{item.hair_color}</span></ListGroup.Item>
-							</ListGroup>
+							<ListGroup.Item>Birth year: {item.birth_year}</ListGroup.Item>
+							<ListGroup.Item>Homeworld: {item.homeworld.name}</ListGroup.Item>
+							<ListGroup.Item>Hair color: <span className='text-capitalize'>{item.hair_color}</span></ListGroup.Item>
+
 						</CardComponent>
 					)
 				}

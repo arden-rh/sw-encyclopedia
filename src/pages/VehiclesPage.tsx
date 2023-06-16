@@ -130,11 +130,10 @@ const VehiclesPage = () => {
 							navigateToPage={() => navigate(`/films/${item.id}`)}
 							resource='vehicles'
 						>
-							<ListGroup className="list-group-flush">
-								<ListGroup.Item>Model: {item.model}</ListGroup.Item>
-								<ListGroup.Item>Crew: {item.crew}</ListGroup.Item>
-								<ListGroup.Item>Passengers: {item.passengers}</ListGroup.Item>
-							</ListGroup>
+							<ListGroup.Item>Model: {item.model}</ListGroup.Item>
+							<ListGroup.Item>Crew: {item.crew}</ListGroup.Item>
+							<ListGroup.Item>Passengers: {item.passengers}</ListGroup.Item>
+
 						</CardComponent>
 					)
 				}

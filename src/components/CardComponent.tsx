@@ -22,8 +22,8 @@ const CardComponent: React.FC<IProps> = ({ children, data, navigateToPage, resou
 					<Card.Body>
 						{('episode_id' in data) && <>
 							<Card.Title>{data.title}</Card.Title>
-							{children}
 							<ListGroup className="list-group-flush">
+								{children}
 								<ListGroup.Item>Characters: {data.characters_count}</ListGroup.Item>
 								<ListGroup.Item>Starships: {data.starships_count}</ListGroup.Item>
 								<ListGroup.Item>Planets: {data.planets_count}</ListGroup.Item>
@@ -32,9 +32,9 @@ const CardComponent: React.FC<IProps> = ({ children, data, navigateToPage, resou
 						}
 						{('name' in data) && <>
 							<Card.Title>{data.name}</Card.Title>
-							{children}
 							<ListGroup className="list-group-flush">
-								<ListGroup.Item>Films: {data.films_count}</ListGroup.Item>
+								{children}
+								{('films_count' in data) && data.films_count > 0 && <ListGroup.Item>Films: {data.films_count}</ListGroup.Item>}
 								{('starships_count' in data) && data.starships_count > 0 && <ListGroup.Item>Starships: {data.starships_count}</ListGroup.Item>}
 								{('vehicles_count' in data) && data.vehicles_count > 0 && <ListGroup.Item>Vehicles: {data.vehicles_count}</ListGroup.Item>}
 								{('residents_count' in data) && data.residents_count > 0 && <ListGroup.Item>Residents: {data.residents_count}</ListGroup.Item>}

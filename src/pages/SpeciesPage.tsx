@@ -133,11 +133,10 @@ const SpeciesPage = () => {
 							navigateToPage={() => navigate(`/films/${item.id}`)}
 							resource='species'
 						>
-							<ListGroup className="list-group-flush">
-								<ListGroup.Item>Language: <span className='text-capitalize'>{item.language}</span></ListGroup.Item>
-								{item.homeworld !== null && <ListGroup.Item>Homeworld: {item.homeworld.name}</ListGroup.Item>}
-								<ListGroup.Item>Designation: <span className='text-capitalize'>{item.designation}</span></ListGroup.Item>
-							</ListGroup>
+							<ListGroup.Item>Language: <span className='text-capitalize'>{item.language}</span></ListGroup.Item>
+							{item.homeworld !== null && <ListGroup.Item>Homeworld: {item.homeworld.name}</ListGroup.Item>}
+							<ListGroup.Item>Designation: <span className='text-capitalize'>{item.designation}</span></ListGroup.Item>
+
 						</CardComponent>
 					)
 				}

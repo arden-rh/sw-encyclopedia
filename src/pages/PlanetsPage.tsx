@@ -131,11 +131,10 @@ const PlanetsPage = () => {
 							navigateToPage={() => navigate(`/films/${item.id}`)}
 							resource='planets'
 						>
-							<ListGroup className="list-group-flush">
-								<ListGroup.Item>Population: {item.population}</ListGroup.Item>
-								<ListGroup.Item>Climate: <span className='text-capitalize'>{item.climate}</span></ListGroup.Item>
-								<ListGroup.Item>Orbital period: {item.orbital_period} standard days</ListGroup.Item>
-							</ListGroup>
+							<ListGroup.Item>Population: {item.population}</ListGroup.Item>
+							<ListGroup.Item>Climate: <span className='text-capitalize'>{item.climate}</span></ListGroup.Item>
+							<ListGroup.Item>Orbital period: {item.orbital_period} standard days</ListGroup.Item>
+
 						</CardComponent>
 					)
 				}

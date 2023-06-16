@@ -79,7 +79,7 @@ const IdPage: React.FC<IProps> = ({ data, children, resource }) => {
 										</li>)}
 								</ul>
 							</div>}
-						{('films' in data) &&
+						{('films' in data) && data.films.length > 0 &&
 							<div>
 								<h2><Link to={`/films`}>Films <FontAwesomeIcon icon={faFilm} /></Link></h2>
 								<ul className='links'>
