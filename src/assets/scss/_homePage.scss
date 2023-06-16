@@ -1,10 +1,15 @@
-.home-page {
+div {
+	iframe {
+		border-radius: 12px;
+	}
+}
+
+.home-page-hero {
 	align-items: center;
 	color: $color-black;
 	display: flex;
 	flex-direction: column;
-	margin-top: 8rem;
-	max-width: 90%;
+	margin-top: 4rem;
 	width: 90%;
 
 	h1 {
@@ -35,5 +40,82 @@
 		margin-bottom: 0.8rem;
 		padding: 0.4rem 1rem;
 		width: fit-content;
+	}
+}
+
+.home-page-list {
+	display: flex;
+	justify-content: center;
+	margin: 2.4rem 0 5rem;
+	max-width: 800px;
+	width: 100%;
+
+	ul {
+		display: flex;
+		flex-direction: column;
+		gap: 3rem;
+		padding: 0;
+		width: 90%;
+
+		li {
+			background-color: $color-lightblue;
+			border-radius: 10px;
+			box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.60);
+			color: $color-black;
+			flex-grow: 1;
+			font-family: $primary-font;
+			font-size: 1.4rem;
+			justify-content: center;
+			letter-spacing: 0.075rem;
+			list-style: none;
+			max-width: 100%;
+			min-height: 4rem;
+			text-align: center;
+
+			a {
+				align-items: center;
+				border-radius: 10px;
+				color: $color-black;
+				display: flex;
+				justify-content: center;
+				min-height: 3rem;
+				padding: 1rem 2rem;
+				text-decoration: none;
+				width: 100%;
+
+				&:hover {
+					background-color: $color-turqoise;
+					color: $color-lightblue;
+				}
+			}
+
+			span {
+				margin-right: 1.2rem;
+			}
+		}
+	}
+}
+
+@media only screen and (min-width: 768px) {
+
+	.home-page-list {
+
+		ul {
+			flex-direction: row;
+			flex-wrap: wrap;
+
+			li {
+				text-align: center;
+				width: 20%;
+
+				a {
+					flex-direction: column;
+
+					span {
+						margin: 0;
+					}
+				}
+			}
+		}
 	}
 }

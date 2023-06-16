@@ -9,7 +9,6 @@ import CardComponent from '../components/CardComponent'
 import Pagination from '../components/Pagination'
 import SearchForm from '../components/SearchForm'
 
-
 const FilmsPage = () => {
 
 	const [error, setError] = useState<string | null>(null)

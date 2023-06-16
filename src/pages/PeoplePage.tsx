@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useNavigate, useSearchParams } from 'react-router-dom'
+import { useNavigate, useLocation, useSearchParams } from 'react-router-dom'
 import { getNewPageData, searchResource } from "../services/SWAPI"
 import { SWAPI_People, SWAPI_Search_People } from '../types'
 import ListGroup from 'react-bootstrap/ListGroup'
@@ -15,15 +15,32 @@ const PeoplePage = () => {
 
 	const [error, setError] = useState<string | null>(null)
 	const [loading, setLoading] = useState(false)
-	const [page, setPage] = useState(1)
 	const [data, setData] = useState<SWAPI_People[] | null>(null)
 	const [searchParams, setSearchParams] = useSearchParams()
+	const query = searchParams.get("query")
+	const page = Number(searchParams.get("page"))
+
 	const [searchResult, setSearchResult] = useState<SWAPI_Search_People | null>(null)
 
+	const { search } = useLocation()
 	const navigate = useNavigate()
 
-	const query = searchParams.get("query")
-	const paramsPage = searchParams.get("page")
+
+
+	// useEffect(() => {
+	// 	const updateSearchParams = () => {
+	// 		setSearchParams((params) => ({
+	// 			...params,
+	// 			page: page.toString(),
+	// 		}));
+	// 	};
+
+	// 	updateSearchParams();
+
+	// 	return () => {
+	// 		window.removeEventListener('popstate', updateSearchParams);
+	// 	};
+	// }, [page, setSearchParams])
 
 	const changePage = async (next: boolean) => {
 
@@ -48,12 +65,12 @@ const PeoplePage = () => {
 			const result = await getNewPageData<SWAPI_Search_People>(searchResult.next_page_url)
 			setData(result.data)
 			setSearchResult(result)
-			setPage(result.current_page)
 
 			if (query) {
 				getData(query, result.current_page)
 			} else {
 				setSearchParams({ page: nextPageValue.toString() })
+				// navigate(`/?page=${nextPageValue}`)
 			}
 
 		} catch (e: any) {
@@ -76,7 +93,6 @@ const PeoplePage = () => {
 			const result = await searchResource<SWAPI_Search_People>("people", query, page)
 			setData(result.data)
 			setSearchResult(result)
-			setPage(page)
 
 			if (result.data.length === 0) {
 				setLoading(false)
@@ -101,12 +117,13 @@ const PeoplePage = () => {
 	useEffect(() => {
 
 		if (!query || query === "") {
-			getData("", Number(paramsPage || "1"))
+			getData("", page || 1)
+
 		} else {
-			getData(query, Number(paramsPage || "1"))
+			getData(query, page || 1)
 		}
 
-	}, [query, paramsPage])
+	}, [query, page])
 
 	return (
 		<>
@@ -143,7 +160,7 @@ const PeoplePage = () => {
 			</div>
 
 			{searchResult && <Pagination
-				page={page}
+				page={searchResult.current_page}
 				totalPages={searchResult.last_page}
 				onChangePage={changePage}
 			/>}
