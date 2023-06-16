@@ -2,10 +2,10 @@ import Button from 'react-bootstrap/Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAnglesLeft, faEarthEurope, faFilm, faPerson, faPersonRays, faRocket, faTruckPlane } from '@fortawesome/free-solid-svg-icons'
 import { Link, useNavigate } from 'react-router-dom'
-import { SWAPI_Film_Search, SWAPI_Person_Search, SWAPI_Planet_Search, SWAPI_Species_Search, SWAPI_Starship_Search, SWAPI_Vehicle_Search } from '../types'
+import { SWAPI_Film_Search, SWAPI_Person_Search, SWAPI_Planet_Search, SWAPI_Species_Single_Search, SWAPI_Starship_Search, SWAPI_Vehicle_Search } from '../types'
 
 interface IProps {
-	data: SWAPI_Film_Search | SWAPI_Person_Search | SWAPI_Planet_Search | SWAPI_Species_Search | SWAPI_Starship_Search | SWAPI_Vehicle_Search
+	data: SWAPI_Film_Search | SWAPI_Person_Search | SWAPI_Planet_Search | SWAPI_Species_Single_Search | SWAPI_Starship_Search | SWAPI_Vehicle_Search
 	children: React.ReactNode
 }
 
@@ -47,6 +47,18 @@ const IdPage: React.FC<IProps> = ({ data, children }) => {
 								<h2><Link to={`/people`}>Residents <FontAwesomeIcon icon={faPersonRays} /></Link></h2>
 								<ul className='links'>
 									{data.residents.map(person =>
+										<li>
+											<Link to={`/people/${person.id}`}><span>{person.name}</span>
+												<span className="material-symbols-outlined">arrow_forward_ios</span>
+											</Link>
+										</li>)}
+								</ul>
+							</div>}
+						{('people' in data) && data.people.length > 0 &&
+							<div>
+								<h2><Link to={`/people`}>People<FontAwesomeIcon icon={faPersonRays} /></Link></h2>
+								<ul className='links'>
+									{data.people.map(person =>
 										<li>
 											<Link to={`/people/${person.id}`}><span>{person.name}</span>
 												<span className="material-symbols-outlined">arrow_forward_ios</span>

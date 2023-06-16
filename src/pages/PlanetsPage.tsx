@@ -3,6 +3,8 @@ import { useNavigate, useSearchParams } from 'react-router-dom'
 import { getNewPageData, searchResource } from "../services/SWAPI"
 import { SWAPI_Planets, SWAPI_Search_Planets } from '../types'
 // import useGetData from '../hooks/useGetData'
+import ListGroup from 'react-bootstrap/ListGroup'
+
 
 /** Components */
 import CardComponent from '../components/CardComponent'
@@ -109,7 +111,7 @@ const PlanetsPage = () => {
 
 	return (
 		<>
-			<h1>Planets Page</h1>
+			<h1>Planets</h1>
 
 			<SearchForm
 				onGetData={getData}
@@ -121,15 +123,21 @@ const PlanetsPage = () => {
 			{error && <p>{error}</p>}
 			{!error && query && searchResult && <p>Showing {searchResult.total} search {searchResult.data.length === 1 ? 'result' : 'results'} for "{query}"...</p>}
 
-
-			<div className='d-flex flex-column align-items-center gap-4'>
+			<div className='card-container'>
 				{!error && data &&
 					data.map(item =>
 						<CardComponent
 							data={item}
 							key={item.id}
 							navigateToPage={() => navigate(`/films/${item.id}`)}
-						/>)
+						>
+							<ListGroup className="list-group-flush">
+								<ListGroup.Item>Population: {item.population}</ListGroup.Item>
+								<ListGroup.Item>Climate: <span className='text-capitalize'>{item.climate}</span></ListGroup.Item>
+								<ListGroup.Item>Orbital period: {item.orbital_period} standard days</ListGroup.Item>
+							</ListGroup>
+						</CardComponent>
+					)
 				}
 			</div>
 			{searchResult && <Pagination

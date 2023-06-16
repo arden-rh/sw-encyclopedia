@@ -3,6 +3,7 @@ import { useNavigate, useSearchParams } from 'react-router-dom'
 import { getNewPageData, searchResource } from "../services/SWAPI"
 import { SWAPI_Starships, SWAPI_Search_Starships } from '../types'
 // import useGetData from '../hooks/useGetData'
+import ListGroup from 'react-bootstrap/ListGroup'
 
 /** Components */
 import CardComponent from '../components/CardComponent'
@@ -109,7 +110,7 @@ const StarshipsPage = () => {
 
 	return (
 		<>
-			<h1>Starships Page</h1>
+			<h1>Starships</h1>
 
 			<SearchForm
 				onGetData={getData}
@@ -121,17 +122,24 @@ const StarshipsPage = () => {
 			{error && <p>{error}</p>}
 			{!error && query && searchResult && <p>Showing {searchResult.total} search {searchResult.data.length === 1 ? 'result' : 'results'} for "{query}"...</p>}
 
-
-			<div className='d-flex flex-column align-items-center gap-4'>
+			<div className='card-container'>
 				{!error && data &&
 					data.map(item =>
 						<CardComponent
 							data={item}
 							key={item.id}
 							navigateToPage={() => navigate(`/films/${item.id}`)}
-						/>)
+						>
+							<ListGroup className="list-group-flush">
+								<ListGroup.Item>Model: {item.model}</ListGroup.Item>
+								<ListGroup.Item>Crew: {item.crew}</ListGroup.Item>
+								<ListGroup.Item>Passengers: {item.passengers}</ListGroup.Item>
+							</ListGroup>
+						</CardComponent>
+					)
 				}
 			</div>
+
 			{searchResult && <Pagination
 				page={page}
 				totalPages={searchResult.last_page}

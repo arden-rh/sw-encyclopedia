@@ -1,0 +1,42 @@
+.card {
+	border: none;
+	border-radius: 10px;
+	box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.60);
+
+}
+
+.card .card-body {
+	align-items: center;
+	background-color: $color-turqoise;
+	border-radius: 10px 10px 0 0;
+	color: #ffffff;
+	display: flex;
+	flex-direction: column;
+
+	&:last-child {
+		border-radius: 0 0 10px 10px;
+		flex-direction: row;
+		justify-content: center;
+
+	}
+
+	.list-group {
+		width: 100%;
+	}
+
+	a {
+		display: flex;
+		justify-content: center;
+		text-decoration: none;
+		width: 100%;
+
+		.btn-primary {
+			background-color: $color-lightblue;
+			color: $color-black;
+			border: none;
+			width: 80%;
+
+		}
+	}
+
+}

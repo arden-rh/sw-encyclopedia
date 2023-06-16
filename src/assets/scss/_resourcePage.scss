@@ -1,0 +1,61 @@
+form {
+	font-family: $secondary-font;
+	width: 90%;
+	max-width: 400px;
+
+	div {
+
+		align-items: center;
+		display: flex;
+		flex-direction: column;
+
+		&:last-child {
+			flex-direction: row;
+			justify-content: center;
+		}
+
+		.btn:disabled {
+
+			background-color: $color-turqoise;
+		}
+
+		.btn-primary {
+			box-shadow: 3px 3px 3px 0px rgba(0, 0, 0, 0.60);
+			background-color: $color-turqoise;
+			border: none;
+		}
+
+		.form-label {
+			background-color: $color-lightblue;
+			border-radius: 10px;
+			box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.60);
+			color: $color-black;
+			margin-bottom: 0.8rem;
+			padding: 0.4rem 1rem;
+			width: fit-content;
+		}
+	}
+}
+
+h1 {
+	margin-bottom: 2rem;
+	font-size: 2.6rem;
+}
+
+p {
+	background-color: rgba(255, 255, 255, 0.6);
+	border-radius: 10px;
+	box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.60);
+	color: $color-black;
+	margin-bottom: 0.8rem;
+	padding: 0.4rem 1rem;
+	width: fit-content;
+}
+
+@media only screen and (min-width: 768px) {
+
+	h1 {
+		font-size: 5rem;
+	}
+
+}

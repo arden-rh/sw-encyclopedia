@@ -29,7 +29,7 @@ export type SWAPI_Search_Films = SWAPI_Search_Multi & { data: SWAPI_Films[] }
 export type SWAPI_Search_People = SWAPI_Search_Multi & { data: SWAPI_People[] }
 export type SWAPI_Search_Planets = SWAPI_Search_Multi & { data: SWAPI_Planets[] }
 export type SWAPI_Search_Starships = SWAPI_Search_Multi & { data: SWAPI_Starships[] }
-export type SWAPI_Search_Species = SWAPI_Search_Multi & { data: SWAPI_SpeciesM[] }
+export type SWAPI_Search_Species = SWAPI_Search_Multi & { data: SWAPI_Species[] }
 export type SWAPI_Search_Vehicles = SWAPI_Search_Multi & { data: SWAPI_Vehicles[] }
 
 /** General Interfaces */
@@ -135,7 +135,7 @@ export type SWAPI_Starship_Search = SWAPI_Starship & Pick<SWAPI_Detailed_Lists, 
 export type SWAPI_Starships = SWAPI_Starship & Pick<SWAPI_Counts, "films_count" | "pilots_count">
 
 /** Species search interface and types */
-interface SWAPI_Species extends ID_Name, Created_Edited {
+interface SWAPI_Species_Single extends ID_Name, Created_Edited {
     average_height: string
     average_lifespan: string
     classification: string
@@ -148,9 +148,9 @@ interface SWAPI_Species extends ID_Name, Created_Edited {
     skin_colors: string
 }
 
-export type SWAPI_Species_Search = SWAPI_Species & Pick<SWAPI_Detailed_Lists, "films">
+export type SWAPI_Species_Single_Search = SWAPI_Species_Single & Pick<SWAPI_Detailed_Lists, "films">
 
-export type SWAPI_SpeciesM = Omit<SWAPI_Species, "people"> & Pick<SWAPI_Counts, "films_count"> & {people_count: number}
+export type SWAPI_Species = Omit<SWAPI_Species_Single, "people"> & Pick<SWAPI_Counts, "films_count"> & {people_count: number}
 
 /** Vehicle search interface and types */
 export type SWAPI_Vehicle_Search = Omit<SWAPI_Starship, "starship_class" | "hyperdrive_rating" | "MGLT"> & Pick<SWAPI_Detailed_Lists, "films" | "pilots"> & { vehicle_class: string}

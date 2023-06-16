@@ -2,61 +2,55 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 import { Link } from 'react-router-dom'
-import { SWAPI_Films, SWAPI_People, SWAPI_Planets, SWAPI_SpeciesM, SWAPI_Starships, SWAPI_Vehicles } from '../types'
+import { SWAPI_Films, SWAPI_People, SWAPI_Planets, SWAPI_Species, SWAPI_Starships, SWAPI_Vehicles } from '../types'
 
 interface IProps {
-	data: SWAPI_Films | SWAPI_People | SWAPI_Planets | SWAPI_SpeciesM | SWAPI_Starships | SWAPI_Vehicles
+	children: React.ReactNode
+	data: SWAPI_Films | SWAPI_People | SWAPI_Planets | SWAPI_Species | SWAPI_Starships | SWAPI_Vehicles
 	navigateToPage: () => void
 }
 
-const CardComponent: React.FC<IProps> = ({ data, navigateToPage }) => {
-
-	const convertToRoman = (num: number) => {
-		if (num === 1) { return "I" }
-		if (num === 2) { return "II" }
-		if (num === 3) { return "III" }
-		if (num === 4) { return "IV" }
-		if (num === 5) { return "V" }
-		if (num === 6) { return "VI" }
-	}
+const CardComponent: React.FC<IProps> = ({ children, data, navigateToPage }) => {
 
 	return (
 		<>
 			{data ?
 				<Card
-					bg='dark'
 					style={{ width: '20rem' }}
-					text='white'
 				>
 					<Card.Body>
 						{('episode_id' in data) && <>
-							<Card.Title>Episode: {convertToRoman(Number(data.episode_id))}: {data.title}</Card.Title>
-							<Card.Text>
-								{data.opening_crawl}
-							</Card.Text>
+							<Card.Title>{data.title}</Card.Title>
+							{children}
+							<ListGroup className="list-group-flush">
+								<ListGroup.Item>Characters: {data.characters_count}</ListGroup.Item>
+								<ListGroup.Item>Starships: {data.starships_count}</ListGroup.Item>
+								<ListGroup.Item>Planets: {data.planets_count}</ListGroup.Item>
+							</ListGroup>
 						</>
 						}
-						{('name' in data) && <Card.Title>{data.name}</Card.Title>}
-
-
+						{('name' in data) && <>
+						<Card.Title>{data.name}</Card.Title>
+						{children}
+							<ListGroup className="list-group-flush">
+								<ListGroup.Item>Films: {data.films_count}</ListGroup.Item>
+								{('starships_count' in data) && data.starships_count > 0 && <ListGroup.Item>Starships: {data.starships_count}</ListGroup.Item>}
+								{('vehicles_count' in data) && data.vehicles_count > 0 && <ListGroup.Item>Vehicles: {data.vehicles_count}</ListGroup.Item>}
+								{('residents_count' in data) && data.residents_count > 0 && <ListGroup.Item>Residents: {data.residents_count}</ListGroup.Item>}
+								{('pilots_count' in data) && data.pilots_count > 0 && <ListGroup.Item>Pilots: {data.pilots_count}</ListGroup.Item>}
+								{('people_count' in data) && data.people_count > 0 && <ListGroup.Item>People: {data.people_count}</ListGroup.Item>}
+							</ListGroup>
+						</>}
 					</Card.Body>
-					{('director' in data) && <>
-						<ListGroup className="list-group-flush">
-							<ListGroup.Item variant='dark'>Director: {data.director}</ListGroup.Item>
-							<ListGroup.Item>Released: </ListGroup.Item>
-							<ListGroup.Item>Vestibulum at eros</ListGroup.Item>
-						</ListGroup>
-						<Card.Body>
-							<Card.Link href="#">Another Link</Card.Link>
-							<Card.Link
-								as={Link}
-								to={`/films/${data.id}`}
-								onClick={navigateToPage}
-							>
-								<Button variant='secondary'>Read more</Button>
-							</Card.Link>
-						</Card.Body>
-					</>}
+					<Card.Body>
+						<Card.Link
+							as={Link}
+							to={`/films/${data.id}`}
+							onClick={navigateToPage}
+						>
+							<Button>Read more</Button>
+						</Card.Link>
+					</Card.Body>
 				</Card> : <p>Something went wrong</p>}
 		</>
 	)

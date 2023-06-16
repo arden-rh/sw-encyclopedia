@@ -17,6 +17,7 @@ import VehiclesPage from './pages/VehiclesPage'
 import FilmPage from './pages/FilmPage'
 import PersonPage from './pages/PersonPage'
 import PlanetPage from './pages/PlanetPage'
+import Species_SinglePage from './pages/Species_SinglePage'
 import StarshipPage from './pages/StarshipPage'
 import VehiclePage from './pages/VehiclePage'
 
@@ -42,7 +43,7 @@ const App = () => {
 					</Route>
 					<Route path="/species">
 						<Route path="/species" element={<SpeciesPage />} />
-						<Route path=":id" element={<SpeciesPage />} />
+						<Route path=":id" element={<Species_SinglePage />} />
 					</Route>
 					<Route path="/starships">
 						<Route path="" element={<StarshipsPage />} />

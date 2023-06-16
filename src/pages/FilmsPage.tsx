@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 import { getNewPageData, searchResource } from "../services/SWAPI"
 import { SWAPI_Films, SWAPI_Search_Films } from '../types'
+import ListGroup from 'react-bootstrap/ListGroup'
+
 // import useGetData from '../hooks/useGetData'
 
 /** Components */
@@ -62,6 +64,15 @@ const FilmsPage = () => {
 		setLoading(false)
 	}
 
+	const convertToRoman = (num: number) => {
+		if (num === 1) { return "I" }
+		if (num === 2) { return "II" }
+		if (num === 3) { return "III" }
+		if (num === 4) { return "IV" }
+		if (num === 5) { return "V" }
+		if (num === 6) { return "VI" }
+	}
+
 	const getData = async (query: string, page: number) => {
 
 		setData(null)
@@ -107,7 +118,7 @@ const FilmsPage = () => {
 
 	return (
 		<>
-			<h1>Films Page</h1>
+			<h1>Films</h1>
 
 			<SearchForm
 				onGetData={getData}
@@ -126,7 +137,14 @@ const FilmsPage = () => {
 							data={item}
 							key={item.id}
 							navigateToPage={() => navigate(`/films/${item.id}`)}
-						/>)
+						>
+							<ListGroup className="list-group-flush">
+								<ListGroup.Item>Episode: {convertToRoman(Number(item.episode_id))}</ListGroup.Item>
+								<ListGroup.Item>Director: {item.director}</ListGroup.Item>
+								<ListGroup.Item>Released: {item.release_date}</ListGroup.Item>
+							</ListGroup>
+						</CardComponent>
+					)
 				}
 			</div>
 			{searchResult && searchResult.last_page > 1 && <Pagination

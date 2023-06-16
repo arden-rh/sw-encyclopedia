@@ -19,7 +19,7 @@ const Navigation = () => {
 	}
 
 	return (
-		<Navbar bg="dark" variant="dark" expand='md' className="mb-3" sticky='top'>
+		<Navbar variant="dark" expand='md' className="mb-3" sticky='top'>
 			<Container fluid>
 				<Navbar.Brand as={Link} to="/">The Star Wars Encyclopedia</Navbar.Brand>
 				<Navbar.Toggle aria-controls={`offcanvasNavbar-expand-md`} onClick={toggleMenu} />
@@ -30,7 +30,7 @@ const Navigation = () => {
 					onHide={handleClose}
 				>
 					<Offcanvas.Header closeButton>
-						<Offcanvas.Title>
+						<Offcanvas.Title id='canvas-title'>
 							The Star Wars Encyclopedia
 						</Offcanvas.Title>
 					</Offcanvas.Header>
@@ -38,7 +38,7 @@ const Navigation = () => {
 						<Nav className="justify-content-end flex-grow-1 pe-3">
 							<Nav.Link as={NavLink} to="/" onClick={toggleMenu}>Home</Nav.Link>
 							<Nav.Link as={NavLink} to="/films/?page=1" onClick={toggleMenu}>Films</Nav.Link>
-							<Nav.Link as={NavLink} to="/people/?page=1" onClick={toggleMenu}>People</Nav.Link>
+							<Nav.Link as={NavLink} to="/people/?page=1" onClick={toggleMenu}>Characters</Nav.Link>
 							<Nav.Link as={NavLink} to="/planets/?page=1" onClick={toggleMenu}>Planets</Nav.Link>
 							<Nav.Link as={NavLink} to="/species/?page=1" onClick={toggleMenu}>Species</Nav.Link>
 							<Nav.Link as={NavLink} to="/starships/?page=1" onClick={toggleMenu}>Starships</Nav.Link>

@@ -1,0 +1,54 @@
+.navbar {
+	background-color: $color-black;
+	font-family: $primary-font;
+	letter-spacing: 0.05rem;
+}
+
+.navbar-brand {
+
+	&:hover {
+		color: $color-turqoise;
+	}
+}
+
+.offcanvas-body,
+.offcanvas-header {
+	background-color: $color-black;
+	color: $color-lightblue;
+	font-family: $primary-font;
+	letter-spacing: 0.05rem;
+}
+
+.offcanvas-body {
+	.navbar-nav {
+		.nav-link {
+			font-size: 1.4rem;
+			border-bottom: 1px solid $color-lightblue;
+		}
+	}
+}
+
+.offcanvas-header {
+
+	#canvas-title {
+		font-size: 1.6rem;
+		letter-spacing: 0.05rem;
+	}
+}
+
+@media only screen and (min-width: 768px) {
+
+	.navbar-brand {
+		font-size: 1.8rem;
+	}
+
+	.offcanvas-body {
+		.navbar-nav {
+			.nav-link {
+				font-size: 1.1rem;
+				border-bottom: none;
+			}
+		}
+	}
+
+}

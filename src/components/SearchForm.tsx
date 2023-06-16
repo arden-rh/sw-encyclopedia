@@ -35,7 +35,7 @@ const SearchForm: React.FC<IProps> = ({ onGetData, onResetForm, page }) => {
 	return (
 		<Form className="mb-4" onSubmit={handleSubmit}>
 			<Form.Group className="mb-3" controlId="searchQuery">
-				<Form.Label>Search</Form.Label>
+				<Form.Label>Search here</Form.Label>
 				<Form.Control
 					autoFocus
 					onChange={e => setSearchInput(e.target.value)}
@@ -45,17 +45,15 @@ const SearchForm: React.FC<IProps> = ({ onGetData, onResetForm, page }) => {
 					value={searchInput}
 				/>
 			</Form.Group>
-			<div className="d-flex justify-content-end">
+			<div>
 				<Button
 					className="me-2"
 					type="reset"
-					variant="danger"
 					onClick={handleReset}
 				>Reset</Button>
 				<Button
 					disabled={!searchInput.trim().length}
 					type="submit"
-					variant="success"
 				>Search</Button>
 			</div>
 		</Form>

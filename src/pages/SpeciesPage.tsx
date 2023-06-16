@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 import { getNewPageData, searchResource } from "../services/SWAPI"
-import { SWAPI_SpeciesM, SWAPI_Search_Species } from '../types'
+import { SWAPI_Species, SWAPI_Search_Species } from '../types'
 // import useGetData from '../hooks/useGetData'
+import ListGroup from 'react-bootstrap/ListGroup'
 
 /** Components */
 import CardComponent from '../components/CardComponent'
@@ -15,7 +16,7 @@ const SpeciesPage = () => {
 	const [error, setError] = useState<string | null>(null)
 	const [loading, setLoading] = useState(false)
 	const [page, setPage] = useState(1)
-	const [data, setData] = useState<SWAPI_SpeciesM[] | null>(null)
+	const [data, setData] = useState<SWAPI_Species[] | null>(null)
 	const [searchParams, setSearchParams] = useSearchParams()
 	const [searchResult, setSearchResult] = useState<SWAPI_Search_Species | null>(null)
 
@@ -112,7 +113,7 @@ const SpeciesPage = () => {
 
 	return (
 		<>
-			<h1>Species Page</h1>
+			<h1>Species</h1>
 
 			<SearchForm
 				onGetData={getData}
@@ -124,17 +125,24 @@ const SpeciesPage = () => {
 			{error && <p>{error}</p>}
 			{!error && query && searchResult && <p>Showing {searchResult.total} search {searchResult.data.length === 1 ? 'result' : 'results'} for "{query}"...</p>}
 
-
-			<div className='d-flex flex-column align-items-center gap-4'>
+			<div className='card-container'>
 				{!error && data &&
 					data.map(item =>
 						<CardComponent
 							data={item}
 							key={item.id}
 							navigateToPage={() => navigate(`/films/${item.id}`)}
-						/>)
+						>
+							<ListGroup className="list-group-flush">
+								<ListGroup.Item>Language: <span className='text-capitalize'>{item.language}</span></ListGroup.Item>
+								{item.homeworld !== null && <ListGroup.Item>Homeworld: {item.homeworld.name}</ListGroup.Item>}
+								<ListGroup.Item>Designation: <span className='text-capitalize'>{item.designation}</span></ListGroup.Item>
+							</ListGroup>
+						</CardComponent>
+					)
 				}
 			</div>
+
 			{searchResult && searchResult.last_page > 1 && <Pagination
 				page={page}
 				totalPages={searchResult.last_page}
