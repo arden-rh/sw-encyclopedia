@@ -110,7 +110,7 @@ const PlanetsPage = () => {
 
 	return (
 		<>
-			<h1>Planets</h1>
+			<h1 className='resource-headers'>Planets</h1>
 
 			<SearchForm
 				onGetData={getData}
@@ -131,9 +131,9 @@ const PlanetsPage = () => {
 							navigateToPage={() => navigate(`/films/${item.id}`)}
 							resource='planets'
 						>
-							<ListGroup.Item>Population: {item.population}</ListGroup.Item>
-							<ListGroup.Item>Climate: <span className='text-capitalize'>{item.climate}</span></ListGroup.Item>
-							<ListGroup.Item>Orbital period: {item.orbital_period} standard days</ListGroup.Item>
+							<ListGroup.Item><span className='info-category'>Population:</span> {item.population}</ListGroup.Item>
+							<ListGroup.Item><span className='info-category'>Climate:</span> <span className='text-capitalize'>{item.climate}</span></ListGroup.Item>
+							<ListGroup.Item><span className='info-category'>Orbital period:</span> {item.orbital_period} standard days</ListGroup.Item>
 
 						</CardComponent>
 					)

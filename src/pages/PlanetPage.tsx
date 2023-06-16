@@ -48,12 +48,12 @@ const PlanetPage = () => {
 					<section>
 						<div className='body'>
 							<ul>
-								<li>Climate: <span className='text-capitalize'>{data.climate}</span></li>
-								<li>Diameter: {data.diameter} km</li>
-								<li>Orbital period: {data.orbital_period} standard days</li>
-								<li>Rotation period: {data.rotation_period} standard hours</li>
-								<li>Population: <span className='text-capitalize'>{data.population}</span></li>
-								<li>Terrain: <span className='text-capitalize'>{data.terrain}</span></li>
+								<li><span className='info-category'>Climate</span>: <span className='text-capitalize'>{data.climate}</span></li>
+								<li><span className='info-category'>Diameter:</span> {data.diameter} km</li>
+								<li><span className='info-category'>Orbital period:</span> {data.orbital_period} standard days</li>
+								<li><span className='info-category'>Rotation period:</span> {data.rotation_period} standard hours</li>
+								<li><span className='info-category'>Population:</span> <span className='text-capitalize'>{data.population}</span></li>
+								<li><span className='info-category'>Terrain:</span> <span className='text-capitalize'>{data.terrain}</span></li>
 							</ul>
 						</div>
 					</section>

@@ -48,8 +48,8 @@ const FilmPage = () => {
 					<section>
 						<div className='body'>
 							<ul>
-								<li>Director: {data.director}</li>
-								<li>Release date: {data.release_date}</li>
+								<li><span className='info-category'>Director:</span> {data.director}</li>
+								<li><span className='info-category'>Release date:</span> {data.release_date}</li>
 							</ul>
 
 							<h2>Opening Crawl</h2>

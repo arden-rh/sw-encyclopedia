@@ -127,7 +127,7 @@ const PeoplePage = () => {
 
 	return (
 		<>
-			<h1>Characters</h1>
+			<h1 className='resource-headers'>Characters</h1>
 
 			<SearchForm
 				onGetData={getData}
@@ -149,9 +149,9 @@ const PeoplePage = () => {
 							navigateToPage={() => navigate(`/films/${item.id}`)}
 							resource='people'
 						>
-							<ListGroup.Item>Birth year: {item.birth_year}</ListGroup.Item>
-							<ListGroup.Item>Homeworld: {item.homeworld.name}</ListGroup.Item>
-							<ListGroup.Item>Hair color: <span className='text-capitalize'>{item.hair_color}</span></ListGroup.Item>
+							<ListGroup.Item><span className='info-category'>Birth year:</span> {item.birth_year}</ListGroup.Item>
+							<ListGroup.Item><span className='info-category'>Homeworld:</span> {item.homeworld.name}</ListGroup.Item>
+							<ListGroup.Item><span className='info-category'>Hair color:</span> <span className='text-capitalize'>{item.hair_color}</span></ListGroup.Item>
 
 						</CardComponent>
 					)

@@ -48,12 +48,12 @@ const PersonPage = () => {
 					<section>
 						<div className='body'>
 							<ul>
-								<li>Birth year: {data.birth_year}</li>
-								<li>Homeworld: <Link to={`/planets/${data.homeworld.id}`}>{data.homeworld.name}</Link></li>
-								<li>Eye color: <span className='text-capitalize'>{data.eye_color}</span></li>
-								<li>Hair color: <span className='text-capitalize'>{data.hair_color}</span></li>
-								<li>Height: {data.height} cm</li>
-								<li>Mass: {data.mass} kg</li>
+								<li><span className='info-category'>Birth year:</span> {data.birth_year}</li>
+								<li><span className='info-category'>Homeworld:</span> <Link to={`/planets/${data.homeworld.id}`}>{data.homeworld.name}</Link></li>
+								<li><span className='info-category'>Eye color:</span> <span className='text-capitalize'>{data.eye_color}</span></li>
+								<li><span className='info-category'>Hair color:</span> <span className='text-capitalize'>{data.hair_color}</span></li>
+								<li><span className='info-category'>Height:</span> {data.height} cm</li>
+								<li><span className='info-category'>Mass:</span> {data.mass} kg</li>
 							</ul>
 						</div>
 					</section>

@@ -115,7 +115,7 @@ const FilmsPage = () => {
 
 	return (
 		<>
-			<h1>Films</h1>
+			<h1 className='resource-headers'>Films</h1>
 
 			<SearchForm
 				onGetData={getData}
@@ -136,9 +136,9 @@ const FilmsPage = () => {
 							navigateToPage={() => navigate(`/films/${item.id}`)}
 							resource='films'
 						>
-							<ListGroup.Item>Episode: {convertToRoman(Number(item.episode_id))}</ListGroup.Item>
-							<ListGroup.Item>Director: {item.director}</ListGroup.Item>
-							<ListGroup.Item>Released: {item.release_date}</ListGroup.Item>
+							<ListGroup.Item><span className='info-category'>Episode:</span> {convertToRoman(Number(item.episode_id))}</ListGroup.Item>
+							<ListGroup.Item><span className='info-category'>Director:</span> {item.director}</ListGroup.Item>
+							<ListGroup.Item><span className='info-category'>Released:</span> {item.release_date}</ListGroup.Item>
 
 						</CardComponent>
 					)

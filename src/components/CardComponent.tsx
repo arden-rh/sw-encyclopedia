@@ -24,9 +24,9 @@ const CardComponent: React.FC<IProps> = ({ children, data, navigateToPage, resou
 							<Card.Title>{data.title}</Card.Title>
 							<ListGroup className="list-group-flush">
 								{children}
-								<ListGroup.Item>Characters: {data.characters_count}</ListGroup.Item>
-								<ListGroup.Item>Starships: {data.starships_count}</ListGroup.Item>
-								<ListGroup.Item>Planets: {data.planets_count}</ListGroup.Item>
+								<ListGroup.Item><span className='info-category'>Characters:</span> {data.characters_count}</ListGroup.Item>
+								<ListGroup.Item><span className='info-category'>Starships:</span> {data.starships_count}</ListGroup.Item>
+								<ListGroup.Item><span className='info-category'>Planets:</span> {data.planets_count}</ListGroup.Item>
 							</ListGroup>
 						</>
 						}
@@ -34,12 +34,12 @@ const CardComponent: React.FC<IProps> = ({ children, data, navigateToPage, resou
 							<Card.Title>{data.name}</Card.Title>
 							<ListGroup className="list-group-flush">
 								{children}
-								{('films_count' in data) && data.films_count > 0 && <ListGroup.Item>Films: {data.films_count}</ListGroup.Item>}
-								{('starships_count' in data) && data.starships_count > 0 && <ListGroup.Item>Starships: {data.starships_count}</ListGroup.Item>}
-								{('vehicles_count' in data) && data.vehicles_count > 0 && <ListGroup.Item>Vehicles: {data.vehicles_count}</ListGroup.Item>}
-								{('residents_count' in data) && data.residents_count > 0 && <ListGroup.Item>Residents: {data.residents_count}</ListGroup.Item>}
-								{('pilots_count' in data) && data.pilots_count > 0 && <ListGroup.Item>Pilots: {data.pilots_count}</ListGroup.Item>}
-								{('people_count' in data) && data.people_count > 0 && <ListGroup.Item>People: {data.people_count}</ListGroup.Item>}
+								{('films_count' in data) && data.films_count > 0 && <ListGroup.Item><span className='info-category'>Films:</span> {data.films_count}</ListGroup.Item>}
+								{('starships_count' in data) && data.starships_count > 0 && <ListGroup.Item><span className='info-category'>Starships:</span> {data.starships_count}</ListGroup.Item>}
+								{('vehicles_count' in data) && data.vehicles_count > 0 && <ListGroup.Item><span className='info-category'>Vehicles:</span> {data.vehicles_count}</ListGroup.Item>}
+								{('residents_count' in data) && data.residents_count > 0 && <ListGroup.Item><span className='info-category'>Residents:</span> {data.residents_count}</ListGroup.Item>}
+								{('pilots_count' in data) && data.pilots_count > 0 && <ListGroup.Item><span className='info-category'>Pilots:</span> {data.pilots_count}</ListGroup.Item>}
+								{('people_count' in data) && data.people_count > 0 && <ListGroup.Item><span className='info-category'>People:</span> {data.people_count}</ListGroup.Item>}
 							</ListGroup>
 						</>}
 					</Card.Body>

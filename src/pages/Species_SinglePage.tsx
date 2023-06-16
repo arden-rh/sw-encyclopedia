@@ -48,12 +48,12 @@ const Species_SinglePage = () => {
 					<section>
 						<div className='body'>
 							<ul>
-								{data.homeworld !== null && <li>Homeworld:  <Link to={`/planets/${data.homeworld.id}`}>{data.homeworld.name}</Link></li>}
-								<li>Classification: <span className='text-capitalize'>{data.classification}</span></li>
-								<li>Designation: <span className='text-capitalize'>{data.designation}</span></li>
-								<li>Language: {data.language}</li>
-								<li>Average lifespan: <span className='text-capitalize'>{data.average_lifespan}</span> years</li>
-								<li>Skin colors: <span className='text-capitalize'>{data.skin_colors}</span></li>
+								{data.homeworld !== null && <li><span className='info-category'>Homeworld:</span>  <Link to={`/planets/${data.homeworld.id}`}>{data.homeworld.name}</Link></li>}
+								<li><span className='info-category'>Classification:</span> <span className='text-capitalize'>{data.classification}</span></li>
+								<li><span className='info-category'>Designation:</span> <span className='text-capitalize'>{data.designation}</span></li>
+								<li><span className='info-category'>Language:</span> {data.language}</li>
+								<li><span className='info-category'>Average lifespan:</span> <span className='text-capitalize'>{data.average_lifespan}</span> years</li>
+								<li><span className='info-category'>Skin colors:</span> <span className='text-capitalize'>{data.skin_colors}</span></li>
 							</ul>
 						</div>
 					</section>

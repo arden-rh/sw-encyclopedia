@@ -1,6 +1,15 @@
 @import "bootstrap/scss/bootstrap";
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lexend:wght@100;200;300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lexend:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200');
 
+@font-face {
+    font-family: 'soloistregular';
+    src: url('/assets/fonts/soloist-z6m8-webfont.woff2') format('woff2'),
+         url('/assets/fonts/soloist-z6m8-webfont.woff') format('woff'),
+		 url('/assets/fonts/soloist-z6m8-webfont.otf') format("opentype");
+    font-weight: normal;
+    font-style: normal;
+}
 
 /* Config variables */
 @import 'config';

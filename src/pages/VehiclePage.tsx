@@ -48,12 +48,12 @@ const VehiclePage = () => {
 					<section>
 						<div className='body'>
 							<ul>
-								<li>Model: <span className='text-capitalize'>{data.model}</span></li>
-								<li>Vehicle class: <span className='text-capitalize'>{data.vehicle_class}</span></li>
-								<li>Manufacturer: {data.manufacturer}</li>
-								<li>Crew: {data.crew}</li>
-								<li>Passengers: {data.passengers}</li>
-								<li>Max atmosphering speed: {data.max_atmosphering_speed} km/h</li>
+								<li><span className='info-category'>Model:</span> <span className='text-capitalize'>{data.model}</span></li>
+								<li><span className='info-category'>Vehicle class:</span> <span className='text-capitalize'>{data.vehicle_class}</span></li>
+								<li><span className='info-category'>Manufacturer:</span> {data.manufacturer}</li>
+								<li><span className='info-category'>Crew:</span> {data.crew}</li>
+								<li><span className='info-category'>Passengers:</span> {data.passengers}</li>
+								<li><span className='info-category'>Max atmosphering speed:</span> {data.max_atmosphering_speed} km/h</li>
 							</ul>
 						</div>
 					</section>

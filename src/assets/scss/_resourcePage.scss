@@ -44,9 +44,21 @@ form {
 	}
 }
 
-h1 {
-	margin-bottom: 2rem;
+.resource-headers {
+	align-items: center;
+	background-color: $color-lightblue;
+	border-radius: 10px;
+	box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.60);
+	color: $color-black;
+	display: flex;
+	font-family: $header-font;
 	font-size: 2.6rem;
+	justify-content: center;
+	letter-spacing: 0.2rem;
+	margin-bottom: 2rem;
+	max-width: 98%;
+	padding: 1rem 2rem;
+	text-align: center;
 }
 
 p {
@@ -70,6 +82,6 @@ p {
 @media only screen and (min-width: 768px) {
 
 	h1 {
-		font-size: 5rem;
+		font-size: 4rem;
 	}
 }

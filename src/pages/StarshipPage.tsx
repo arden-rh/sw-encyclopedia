@@ -48,12 +48,12 @@ const StarshipPage = () => {
 					<section>
 						<div className='body'>
 							<ul>
-								<li>Model: <span className='text-capitalize'>{data.model}</span></li>
-								<li>Starship class: <span className='text-capitalize'>{data.starship_class}</span></li>
-								<li>Manufacturer: {data.manufacturer}</li>
-								<li>Crew: {data.crew}</li>
-								<li>Passengers: {data.passengers}</li>
-								<li>Hyperdrive rating: {data.hyperdrive_rating}</li>
+								<li><span className='info-category'>Model:</span> <span className='text-capitalize'>{data.model}</span></li>
+								<li><span className='info-category'>Starship class:</span> <span className='text-capitalize'>{data.starship_class}</span></li>
+								<li><span className='info-category'>Manufacturer:</span> {data.manufacturer}</li>
+								<li><span className='info-category'>Crew:</span> {data.crew}</li>
+								<li><span className='info-category'>Passengers:</span> {data.passengers}</li>
+								<li><span className='info-category'>Hyperdrive rating:</span> {data.hyperdrive_rating}</li>
 							</ul>
 						</div>
 					</section>

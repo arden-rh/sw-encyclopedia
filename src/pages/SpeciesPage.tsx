@@ -112,7 +112,7 @@ const SpeciesPage = () => {
 
 	return (
 		<>
-			<h1>Species</h1>
+			<h1 className='resource-headers'>Species</h1>
 
 			<SearchForm
 				onGetData={getData}
@@ -133,9 +133,9 @@ const SpeciesPage = () => {
 							navigateToPage={() => navigate(`/films/${item.id}`)}
 							resource='species'
 						>
-							<ListGroup.Item>Language: <span className='text-capitalize'>{item.language}</span></ListGroup.Item>
-							{item.homeworld !== null && <ListGroup.Item>Homeworld: {item.homeworld.name}</ListGroup.Item>}
-							<ListGroup.Item>Designation: <span className='text-capitalize'>{item.designation}</span></ListGroup.Item>
+							<ListGroup.Item><span className='info-category'>Language:</span> <span className='text-capitalize'>{item.language}</span></ListGroup.Item>
+							{item.homeworld !== null && <ListGroup.Item><span className='info-category'>Homeworld:</span> {item.homeworld.name}</ListGroup.Item>}
+							<ListGroup.Item><span className='info-category'>Designation:</span> <span className='text-capitalize'>{item.designation}</span></ListGroup.Item>
 
 						</CardComponent>
 					)

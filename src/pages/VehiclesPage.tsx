@@ -109,7 +109,7 @@ const VehiclesPage = () => {
 
 	return (
 		<>
-			<h1>Vehicles</h1>
+			<h1 className='resource-headers'>Vehicles</h1>
 
 			<SearchForm
 				onGetData={getData}
@@ -130,9 +130,9 @@ const VehiclesPage = () => {
 							navigateToPage={() => navigate(`/films/${item.id}`)}
 							resource='vehicles'
 						>
-							<ListGroup.Item>Model: {item.model}</ListGroup.Item>
-							<ListGroup.Item>Crew: {item.crew}</ListGroup.Item>
-							<ListGroup.Item>Passengers: {item.passengers}</ListGroup.Item>
+							<ListGroup.Item><span className='info-category'>Model:</span> {item.model}</ListGroup.Item>
+							<ListGroup.Item><span className='info-category'>Crew:</span> {item.crew}</ListGroup.Item>
+							<ListGroup.Item><span className='info-category'>Passengers:</span> {item.passengers}</ListGroup.Item>
 
 						</CardComponent>
 					)
