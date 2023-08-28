@@ -78,51 +78,39 @@ const IdPage: React.FC<IProps> = ({ data, children, resource }) => {
 									</li>)}
 							</CategoryCompFilm>
 						}
-						{'starships' in data && data.starships.length > 0 &&
-						<CategoryComponent
-							data={data.starships}
-							icon={faRocket}
-							resource='starships'
-						/>
 
+						{'starships' in data && data.starships.length > 0 &&
+							<CategoryComponent
+								data={data.starships}
+								icon={faRocket}
+								resource='starships'
+							/>
 						}
 
-						{('vehicles' in data) && data.vehicles.length > 0 &&
-							<div>
-								<h2><Link to={`/vehicles`}>Vehicles <FontAwesomeIcon icon={faTruckPlane} /></Link></h2>
-								<ul className='links'>
-									{data.vehicles.map(vehicle =>
-										<li>
-											<Link to={`/vehicles/${vehicle.id}`}><span>{vehicle.name}</span>
-												<span className="material-symbols-outlined">arrow_forward_ios</span>
-											</Link>
-										</li>)}
-								</ul>
-							</div>}
-						{('species' in data) && data.species.length > 0 &&
-							<div>
-								<h2><Link to={`/species`}>Species <FontAwesomeIcon icon={faPerson} /></Link></h2>
-								<ul className='links'>
-									{data.species.map(species =>
-										<li>
-											<Link to={`/species/${species.id}`}><span>{species.name}</span>
-												<span className="material-symbols-outlined">arrow_forward_ios</span>
-											</Link>
-										</li>)}
-								</ul>
-							</div>}
-						{('planets' in data) &&
-							<div>
-								<h2><Link to={`/planets`}>Planets <FontAwesomeIcon icon={faEarthEurope} /></Link></h2>
-								<ul className='links'>
-									{data.planets.map(planet =>
-										<li>
-											<Link to={`/planets/${planet.id}`}><span>{planet.name}</span>
-												<span className="material-symbols-outlined">arrow_forward_ios</span>
-											</Link>
-										</li>)}
-								</ul>
-							</div>}
+						{'vehicles' in data && data.vehicles.length > 0 &&
+							<CategoryComponent
+								data={data.vehicles}
+								icon={faTruckPlane}
+								resource='vehicles'
+							/>
+						}
+
+						{'species' in data && data.species.length > 0 &&
+							<CategoryComponent
+								data={data.species}
+								icon={faPerson}
+								resource='species'
+							/>
+						}
+
+						{'planets' in data && data.planets.length > 0 &&
+							<CategoryComponent
+								data={data.planets}
+								icon={faEarthEurope}
+								resource='planets'
+							/>
+						}
+
 					</section>
 					<Link
 						className='go-back'
