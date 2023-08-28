@@ -1,7 +1,7 @@
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Link } from 'react-router-dom'
-import { ID_Name, SWAPI_Detailed_Lists, SWAPI_Search_Film, SWAPI_Search_Person, SWAPI_Search_Planet, SWAPI_Search_Single_Species, SWAPI_Search_Starship, SWAPI_Search_Vehicle } from '../types'
+import { ID_Name } from '../types'
 import { IconProp } from '@fortawesome/fontawesome-svg-core'
 
 
@@ -11,7 +11,7 @@ interface IProps {
 	icon: IconProp
 }
 
-const CategoryCompPeople: React.FC<IProps> = ({ data, resource, icon }) => {
+const CategoryComponent: React.FC<IProps> = ({ data, resource, icon }) => {
 
 	return (
 		<div>
@@ -28,4 +28,4 @@ const CategoryCompPeople: React.FC<IProps> = ({ data, resource, icon }) => {
 	)
 }
 
-export default CategoryCompPeople
+export default CategoryComponent

@@ -3,8 +3,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Link, useNavigate } from 'react-router-dom'
 import { SWAPI_Search_Film, SWAPI_Search_Person, SWAPI_Search_Planet, SWAPI_Search_Single_Species, SWAPI_Search_Starship, SWAPI_Search_Vehicle } from '../types'
 import Button from 'react-bootstrap/Button';
+import CategoryCompFilm from './CategoryCompFilm'
 import CategoryComponent from './CategoryComponent'
-import CategoryCompPeople from './CategoryCompPeople'
 
 interface IProps {
 	data: SWAPI_Search_Film | SWAPI_Search_Person | SWAPI_Search_Planet | SWAPI_Search_Single_Species | SWAPI_Search_Starship | SWAPI_Search_Vehicle
@@ -33,9 +33,8 @@ const IdPage: React.FC<IProps> = ({ data, children, resource }) => {
 					{('name' in data) && <h1><span className='name'>{data.name}</span></h1>}
 					{children}
 					<section>
-
 						{'characters' in data &&
-							<CategoryCompPeople
+							<CategoryComponent
 								resource='characters'
 								icon={faPersonRays}
 								data={data.characters}
@@ -43,29 +42,15 @@ const IdPage: React.FC<IProps> = ({ data, children, resource }) => {
 						}
 
 						{'residents' in data && data.residents.length > 0 &&
-							<CategoryCompPeople
+							<CategoryComponent
 								resource='residents'
 								icon={faPersonRays}
 								data={data.residents}
 							/>
 						}
 
-						{'residents' in data && data.residents.length > 0 &&
-							<CategoryComponent
-								resource='residents'
-								icon={faPersonRays}
-							>
-								{data.residents.map(person =>
-									<li>
-										<Link to={`/people/${person.id}`}><span>{person.name}</span>
-											<span className="material-symbols-outlined">arrow_forward_ios</span>
-										</Link>
-									</li>)}
-							</CategoryComponent>
-						}
-
 						{'people' in data && data.people.length > 0 &&
-							<CategoryCompPeople
+							<CategoryComponent
 								resource='people'
 								icon={faPersonRays}
 								data={data.people}
@@ -73,37 +58,35 @@ const IdPage: React.FC<IProps> = ({ data, children, resource }) => {
 						}
 
 						{'pilots' in data && data.pilots.length > 0 &&
-							<CategoryCompPeople
+							<CategoryComponent
 								resource='pilots'
 								icon={faPersonRays}
 								data={data.pilots}
 							/>
 						}
 
-						{('films' in data) && data.films.length > 0 &&
-							<div>
-								<h2><Link to={`/films`}>Films <FontAwesomeIcon icon={faFilm} /></Link></h2>
-								<ul className='links'>
-									{data.films.map(film =>
-										<li>
-											<Link to={`/films/${film.id}`}><span>{film.title}</span>
-												<span className="material-symbols-outlined">arrow_forward_ios</span>
-											</Link>
-										</li>)}
-								</ul>
-							</div>}
-						{('starships' in data) && data.starships.length > 0 &&
-							<div>
-								<h2><Link to={`/starships`}>Starships <FontAwesomeIcon icon={faRocket} /></Link></h2>
-								<ul className='links'>
-									{data.starships.map(starship =>
-										<li>
-											<Link to={`/starships/${starship.id}`}><span>{starship.name}</span>
-												<span className="material-symbols-outlined">arrow_forward_ios</span>
-											</Link>
-										</li>)}
-								</ul>
-							</div>}
+						{'films' in data && data.films.length > 0 &&
+							<CategoryCompFilm
+								resource='films'
+								icon={faFilm}
+							>
+								{data.films.map(film =>
+									<li>
+										<Link to={`/films/${film.id}`}><span>{film.title}</span>
+											<span className="material-symbols-outlined">arrow_forward_ios</span>
+										</Link>
+									</li>)}
+							</CategoryCompFilm>
+						}
+						{'starships' in data && data.starships.length > 0 &&
+						<CategoryComponent
+							data={data.starships}
+							icon={faRocket}
+							resource='starships'
+						/>
+
+						}
+
 						{('vehicles' in data) && data.vehicles.length > 0 &&
 							<div>
 								<h2><Link to={`/vehicles`}>Vehicles <FontAwesomeIcon icon={faTruckPlane} /></Link></h2>
