@@ -1,5 +1,5 @@
 import notFound from "../assets/images/swapi_404.svg"
-import Button from 'react-bootstrap/Button';
+import Button from 'react-bootstrap/Button'
 import { Link, useNavigate } from 'react-router-dom'
 
 const NotFound = () => {

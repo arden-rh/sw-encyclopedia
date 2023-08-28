@@ -1,8 +1,10 @@
-import Button from 'react-bootstrap/Button';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAnglesLeft, faEarthEurope, faFilm, faPerson, faPersonRays, faRocket, faTruckPlane } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Link, useNavigate } from 'react-router-dom'
 import { SWAPI_Search_Film, SWAPI_Search_Person, SWAPI_Search_Planet, SWAPI_Search_Single_Species, SWAPI_Search_Starship, SWAPI_Search_Vehicle } from '../types'
+import Button from 'react-bootstrap/Button';
+import CategoryComponent from './CategoryComponent'
+import CategoryCompPeople from './CategoryCompPeople'
 
 interface IProps {
 	data: SWAPI_Search_Film | SWAPI_Search_Person | SWAPI_Search_Planet | SWAPI_Search_Single_Species | SWAPI_Search_Starship | SWAPI_Search_Vehicle
@@ -31,54 +33,53 @@ const IdPage: React.FC<IProps> = ({ data, children, resource }) => {
 					{('name' in data) && <h1><span className='name'>{data.name}</span></h1>}
 					{children}
 					<section>
-						{('characters' in data) &&
-							<div>
-								<h2><Link to={`/people`}>Characters <FontAwesomeIcon icon={faPersonRays} /></Link></h2>
-								<ul className='links'>
-									{data.characters.map(person =>
-										<li>
-											<Link to={`/people/${person.id}`}><span>{person.name}</span>
-												<span className="material-symbols-outlined">arrow_forward_ios</span>
-											</Link>
-										</li>)}
-								</ul>
-							</div>}
-						{('residents' in data) && data.residents.length > 0 &&
-							<div>
-								<h2><Link to={`/people`}>Residents <FontAwesomeIcon icon={faPersonRays} /></Link></h2>
-								<ul className='links'>
-									{data.residents.map(person =>
-										<li>
-											<Link to={`/people/${person.id}`}><span>{person.name}</span>
-												<span className="material-symbols-outlined">arrow_forward_ios</span>
-											</Link>
-										</li>)}
-								</ul>
-							</div>}
-						{('people' in data) && data.people.length > 0 &&
-							<div>
-								<h2><Link to={`/people`}>People<FontAwesomeIcon icon={faPersonRays} /></Link></h2>
-								<ul className='links'>
-									{data.people.map(person =>
-										<li>
-											<Link to={`/people/${person.id}`}><span>{person.name}</span>
-												<span className="material-symbols-outlined">arrow_forward_ios</span>
-											</Link>
-										</li>)}
-								</ul>
-							</div>}
-						{('pilots' in data) && data.pilots.length > 0 &&
-							<div>
-								<h2><Link to={`/people`}>Pilots <FontAwesomeIcon icon={faPersonRays} /></Link></h2>
-								<ul className='links'>
-									{data.pilots.map(person =>
-										<li>
-											<Link to={`/people/${person.id}`}><span>{person.name}</span>
-												<span className="material-symbols-outlined">arrow_forward_ios</span>
-											</Link>
-										</li>)}
-								</ul>
-							</div>}
+
+						{'characters' in data &&
+							<CategoryCompPeople
+								resource='characters'
+								icon={faPersonRays}
+								data={data.characters}
+							/>
+						}
+
+						{'residents' in data && data.residents.length > 0 &&
+							<CategoryCompPeople
+								resource='residents'
+								icon={faPersonRays}
+								data={data.residents}
+							/>
+						}
+
+						{'residents' in data && data.residents.length > 0 &&
+							<CategoryComponent
+								resource='residents'
+								icon={faPersonRays}
+							>
+								{data.residents.map(person =>
+									<li>
+										<Link to={`/people/${person.id}`}><span>{person.name}</span>
+											<span className="material-symbols-outlined">arrow_forward_ios</span>
+										</Link>
+									</li>)}
+							</CategoryComponent>
+						}
+
+						{'people' in data && data.people.length > 0 &&
+							<CategoryCompPeople
+								resource='people'
+								icon={faPersonRays}
+								data={data.people}
+							/>
+						}
+
+						{'pilots' in data && data.pilots.length > 0 &&
+							<CategoryCompPeople
+								resource='pilots'
+								icon={faPersonRays}
+								data={data.pilots}
+							/>
+						}
+
 						{('films' in data) && data.films.length > 0 &&
 							<div>
 								<h2><Link to={`/films`}>Films <FontAwesomeIcon icon={faFilm} /></Link></h2>

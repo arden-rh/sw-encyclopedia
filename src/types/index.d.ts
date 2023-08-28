@@ -30,7 +30,7 @@ interface Created_Edited {
 	edited: string
 }
 
-interface ID_Name {
+export interface ID_Name {
 	id: number
 	name: string
 }

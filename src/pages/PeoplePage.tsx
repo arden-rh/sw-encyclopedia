@@ -25,23 +25,6 @@ const PeoplePage = () => {
 	const { search } = useLocation()
 	const navigate = useNavigate()
 
-
-
-	// useEffect(() => {
-	// 	const updateSearchParams = () => {
-	// 		setSearchParams((params) => ({
-	// 			...params,
-	// 			page: page.toString(),
-	// 		}));
-	// 	};
-
-	// 	updateSearchParams();
-
-	// 	return () => {
-	// 		window.removeEventListener('popstate', updateSearchParams);
-	// 	};
-	// }, [page, setSearchParams])
-
 	const changePage = async (next: boolean) => {
 
 		setError(null)
@@ -70,7 +53,6 @@ const PeoplePage = () => {
 				getData(query, result.current_page)
 			} else {
 				setSearchParams({ page: nextPageValue.toString() })
-				// navigate(`/?page=${nextPageValue}`)
 			}
 
 		} catch (e: any) {
