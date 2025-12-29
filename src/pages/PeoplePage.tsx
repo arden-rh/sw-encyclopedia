@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useNavigate, useLocation, useSearchParams } from 'react-router-dom'
+import { useNavigate, useSearchParams } from 'react-router-dom'
 import { getNewPageData, searchResource } from "../services/SWAPI"
 import { SWAPI_People, SWAPI_Search_People } from '../types'
 import ListGroup from 'react-bootstrap/ListGroup'
@@ -22,7 +22,6 @@ const PeoplePage = () => {
 
 	const [searchResult, setSearchResult] = useState<SWAPI_Search_People | null>(null)
 
-	const { search } = useLocation()
 	const navigate = useNavigate()
 
 	const changePage = async (next: boolean) => {
